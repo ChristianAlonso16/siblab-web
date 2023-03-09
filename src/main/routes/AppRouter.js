@@ -1,12 +1,11 @@
 import { Routes, Route } from 'react-router-dom';
-
+import PageNotFound from '../pages/PageNotFound';
 import AdminRouter from '../../admin/routes/AdminRouter';
 import TeacherRouter from '../../teacher/routes/TeacherRouter';
 import AdminRouterPrivate from './AdminRouterPrivate';
 import TeacherRouterPrivate from './TeacherRouterPrivate';
 import PublicRouter from './PublicRouter';
 import { Login } from '../pages/Login';
-import { ListReportsAdmin } from '../../admin/pages/ListReportsAdmin';
 export const AppRouter = () => {
 
 	return (
@@ -28,7 +27,7 @@ export const AppRouter = () => {
 						<AdminRouter />
 					</AdminRouterPrivate>} />
 
-				<Route path="/*" element={<ListReportsAdmin/>} />
+				<Route path="/*" element={<PageNotFound/>} />
 			</Routes>
 
 

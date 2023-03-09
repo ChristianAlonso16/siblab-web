@@ -1,9 +1,10 @@
 import React from 'react'
+import RegisterDocenteComponent from '../components/RegisterDocenteComponent'
 
 const RegisterTeacher = () => {
   return (
-    <div>RegisterTeacher</div>
-  )
+    <RegisterDocenteComponent/>
+    )
 }
 
 export default RegisterTeacher
