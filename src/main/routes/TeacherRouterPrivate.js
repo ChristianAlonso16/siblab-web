@@ -8,7 +8,7 @@ const TeacherRouterPrivate = ({children}) => {
     children :
   (logged && (user.role =='Admin'))?
    <Navigate to={'/admin/listaReportes'}/> : 
-   <Navigate to={'/login'}/>
+   <Navigate to={'/'}/> //login
 }
 
 export default TeacherRouterPrivate
