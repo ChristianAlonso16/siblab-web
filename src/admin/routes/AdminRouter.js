@@ -5,15 +5,19 @@ import SidebarAdmin from '../components/SidebarAdmin';
 import Laboratories from '../pages/Laboratories';
 import RegisterTeacher from '../pages/RegisterTeacher';
 import Inventory from '../pages/Inventory';
+import Aulas from '../pages/Aulas';
+import AulasComputer from '../pages/AulasComputer';
+import RegisterQuater from '../pages/RegisterQuater';
  const AdminRouter = () => {
    return (
       <>
          <Routes>
          <Route path="listaReportes" element={<><SidebarAdmin /><ListReportsAdmin /></>} />
             <Route path="laboratorios" element={<><SidebarAdmin /><Laboratories /></>} />
-            <Route path="aulas" element={<><SidebarAdmin />Hola Aulas</>} />
+            <Route path="aulas" element={<><SidebarAdmin /><Aulas/></>} />
+            <Route path="aulas/aula" element={<><SidebarAdmin /><AulasComputer/></>} />
             <Route path="inventario" element={<><SidebarAdmin /><Inventory/></>} />
-            <Route path="registrarCuatrimestre" element={<><SidebarAdmin />Hola RegistrarCuatrimestre</>} />
+            <Route path="registrarCuatrimestre" element={<><SidebarAdmin /><RegisterQuater/></>} />
             <Route path="registrarDocente" element={<><SidebarAdmin /><RegisterTeacher/></>} />
             <Route path="/" element={<Navigate to={"/admin/listaReportes"} />} />
             <Route path="/*" element={<>no te ecnontre</>} />

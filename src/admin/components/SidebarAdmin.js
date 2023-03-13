@@ -12,7 +12,7 @@ const SidebarAdmin = () => {
 const navigate=useNavigate();
 const onLogout=()=>{
     logout();
-    navigate("/login",{
+    navigate("/",{
         replace:true
     })
 }
@@ -50,7 +50,7 @@ const {user,logout} = useContext(AuthContext);
             <li>
                 <a href="/admin/registrarDocente" className="nav-link text-white menu">
                    <FaUserAlt className='sidenav-icon'/>
-                    Docentes
+                    Registrar Docente
                 </a>
             </li>
             <hr/>
@@ -59,6 +59,13 @@ const {user,logout} = useContext(AuthContext);
                 <a href="/admin/inventario" className="nav-link text-white menu">
                    <MdOutlineInventory className='sidenav-icon'/>
                     Inventario
+                </a>
+            </li>
+            <hr/>
+            <li>
+                <a href="/admin/registrarCuatrimestre" className="nav-link text-white menu">
+                   <MdOutlineInventory className='sidenav-icon'/>
+                   Registrar Cuatrimestre
                 </a>
             </li>
             <hr/>
