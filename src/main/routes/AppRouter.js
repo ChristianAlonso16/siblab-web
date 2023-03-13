@@ -6,13 +6,13 @@ import AdminRouterPrivate from './AdminRouterPrivate';
 import TeacherRouterPrivate from './TeacherRouterPrivate';
 import PublicRouter from './PublicRouter';
 import { Login } from '../pages/Login';
-export const AppRouter = () => {
 
+export const AppRouter = () => {
 	return (
 		<>
 
 			<Routes>
-				<Route path="/login" element={
+				<Route path="/" element={
 					<PublicRouter>
 						<Login />
 					</PublicRouter>} />

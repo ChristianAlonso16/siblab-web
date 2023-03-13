@@ -1,9 +1,10 @@
 import React from 'react'
+import AulasComponent from '../components/AulasComponent'
 
 const Aulas = () => {
   return (
-    <div>Aulas</div>
-  )
+<AulasComponent/>
+    )
 }
 
 export default Aulas

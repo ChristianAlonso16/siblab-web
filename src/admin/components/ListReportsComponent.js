@@ -1,5 +1,5 @@
 import React from 'react'
-
+import ViewReport from '../components/ViewReportComponent'
 const ListReportsComponent = () => {
   return (
     <div className="container-sm p-5 posicion " >
@@ -16,7 +16,7 @@ const ListReportsComponent = () => {
                 <td scope="row" className="p-3 fw-light"><i className="bi bi-laptop"></i> <i
                     className="bi bi-mouse2-fill pe-3"></i>10:00</td>
                 <td> Angel camargo silva</td>
-                <td>    <button type="button" className="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">  <i className="bi bi-eye"></i> </button></td>
+                <td>   <ViewReport/></td>
 
             </tr>
         </tbody>
