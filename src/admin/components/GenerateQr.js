@@ -1,6 +1,6 @@
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Button, Modal } from 'react-bootstrap';
 import QRCode from 'qrcode.react';
 import * as htmlToImage from 'html-to-image';
@@ -9,10 +9,11 @@ const url = 'http://localhost:8080/api-siblab/image';
 const InfoModal = (props) => {
     const [loading, setLoading] = useState(false);
     const { show,handleClose,qrValue } = props;
-    
 
+    
     const guardarQr = () => {
         const qrCode = document.getElementById('qr-code');
+        setLoading(true);
         htmlToImage.toJpeg(qrCode)
             .then(function (dataUrl) {
                 const link = document.createElement('a');
