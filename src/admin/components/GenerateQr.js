@@ -22,7 +22,7 @@ const InfoModal = (props) => {
                 link.click();
             });
     };
-    console.log('QR',qrValue.name);
+    
     return (
         <>  
          <Modal className='fade bg-secondary ' size='lg' show={show} onHide={handleClose}>

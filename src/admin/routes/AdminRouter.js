@@ -14,8 +14,8 @@ import RegisterQuater from '../pages/RegisterQuater';
          <Routes>
          <Route path="listaReportes" element={<><SidebarAdmin /><ListReportsAdmin /></>} />
             <Route path="laboratorios" element={<><SidebarAdmin /><Laboratories /></>} />
-            <Route path="aulas" element={<><SidebarAdmin /><Aulas/></>} />
-            <Route path="aulas/aula" element={<><SidebarAdmin /><AulasComputer/></>} />
+            <Route path="aulas/:id" element={<><SidebarAdmin /><Aulas/></>} />
+            <Route path="aulas/aula/:id" element={<><SidebarAdmin /><AulasComputer/></>} />
             <Route path="inventario" element={<><SidebarAdmin /><Inventory/></>} />
             <Route path="registrarCuatrimestre" element={<><SidebarAdmin /><RegisterQuater/></>} />
             <Route path="registrarDocente" element={<><SidebarAdmin /><RegisterTeacher/></>} />

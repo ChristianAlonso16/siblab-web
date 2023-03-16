@@ -1,30 +1,31 @@
 import React, { useEffect, useState } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import QRCode from 'qrcode.react';
-import * as htmlToImage from 'html-to-image';
 import Loading from '../../main/components/Loading';
 import { getComputerAulas } from '../services/AulasService';
-import { Button, Modal } from 'react-bootstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { Button } from 'react-bootstrap';
+
 import InfoModal from './GenerateQr';
+import { useParams } from 'react-router-dom';
 const url = 'http://localhost:8080/api-siblab/image';
 
 const AulasComputerComponent = ({ data }) => {
+    const { id } = useParams();
+
     const [computers, setComputers] = useState([]);
     const [selectedItem, setSelectedItem] = useState('');
     const [show, setShow] = useState(false);
-    const [loading, setLoading] = useState(false);
 
 
     useEffect(() => {
+        const findMachine = async () => {
+            const response = await getComputerAulas();
+            const aulaFiltro = response.data.data;
+            const filteredComputer = aulaFiltro.filter(objeto => objeto.laboratory.id === parseInt(id))
+            setComputers(filteredComputer);
+        }
         findMachine();
     }, [])
 
-    const findMachine = async () => {
-        const response = await getComputerAulas();
-        setComputers(response.data.data); //recibe nuevo registro para renderizarlo
-    }
 
     const handleShow = (computer) => {
         setShow(true)
@@ -32,13 +33,6 @@ const AulasComputerComponent = ({ data }) => {
         console.log('entro amodal', computer.id)
 
     };
-
-    const handleClose = () => {
-        setShow(false);
-        setSelectedItem(null);
-    }
-  
-
     if (!computers.length) return <Loading />
 
     const filas = computers.map((computer) => (
@@ -50,7 +44,7 @@ const AulasComputerComponent = ({ data }) => {
             <td>{computer.cpu}</td>
             <td>{computer.status === true ? 'Activa' : 'Inactiva'}</td>
             <td>
-                <Button className='btn-sm' variant="primary" onClick={() => handleShow(computer)}>
+                <Button className='btn-sm btn' style={{backgroundColor:" rgb(21 47 71)"}} onClick={() => handleShow(computer)}>
                     Generar codigo Qr
                 </Button>
                
@@ -82,7 +76,7 @@ const AulasComputerComponent = ({ data }) => {
             </table>
             <InfoModal 
            show={show}
-            handleClose={handleClose}
+            handleClose={()=>(setShow(false))}
             qrValue={selectedItem}
            />
         </div>
