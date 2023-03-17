@@ -69,6 +69,13 @@ const {user,logout} = useContext(AuthContext);
                 </a>
             </li>
             <hr/>
+            <li>
+                <a href="/admin/registrarGrupo" className="nav-link text-white menu">
+                   <MdOutlineInventory className='sidenav-icon'/>
+                   Registrar Grupo
+                </a>
+            </li>
+            <hr/>
 
         </ul>
         <hr/>

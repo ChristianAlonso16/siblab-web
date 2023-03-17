@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react';
 import apiUrl from '../utils/AppUrl';
+
 export const LoginService = async (form) => {
         console.log('HOLA DESDE SERVICE', form.username);
         const url = 'http://localhost:8080/api-siblab/login/';
@@ -9,6 +10,6 @@ export const LoginService = async (form) => {
         formLogin.append('password', form.password);
         formLogin.append("METHOD", "POST");
         
-        const response = await axios.post(url, formLogin);
+        const response = await apiUrl.get("/login");
         return response;
 } 

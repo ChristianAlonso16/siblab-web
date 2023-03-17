@@ -1,10 +1,25 @@
 .sidebar {
-    position: fixed;
+    position:  fixed;
     bottom: 0;
     left: 0;
     top: 0;
-}
+    overflow-y: auto; /* agregar la propiedad de desplazamiento */
 
+}
+.sidebar::-webkit-scrollbar {
+    width: 12px;
+  }
+  
+  .sidebar::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+  }
+  
+  .sidebar::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 6px;
+    border: 3px solid #f1f1f1;
+  }
+  
 .imagen {
     width: auto;
     height: 55px;

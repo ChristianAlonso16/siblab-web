@@ -1,20 +1,37 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { Button } from 'react-bootstrap';
+import axios from 'axios';
+import apiUrl from '../../main/utils/AppUrl';
 const RegisterQuaterComponent = ({ onQuarter }) => {
     const [name, setName] = useState("");
     const [fechaInicio, setFechaInicio] = useState("");
     const [fechaFin, setFechaFin] = useState("");
     const [docente, setDocente] = useState("");
     const [loading, setLoading] = useState(false);
+    const [options, setOptions] = useState([]);
+
+
+    useEffect(() => {
+        const choseTeacher = async () => {
+          const response = await apiUrl.get('http://localhost:8080/api-siblab/user/');
+          const docenteFiltro = response.data.data;
+          const filteredTeacher = docenteFiltro.filter(objeto => objeto.role === 'Teacher');
+          setOptions(filteredTeacher);
+          console.log('filtro',filteredTeacher);
+        }
+        choseTeacher();
+    
+      }, []);
+    
 
     const onQuart = async (event) => {
         console.log(fechaInicio);
         event.preventDefault();
         setLoading(true);
-        await onQuarter({name, fechaInicio, fechaFin, docente, setLoading });
+        await onQuarter({ name, fechaInicio, fechaFin, docente, setLoading });
     }
     return (
         <div className="p-5 mt-5 container" style={{ marginLeft: "300px" }}>
@@ -46,9 +63,9 @@ const RegisterQuaterComponent = ({ onQuarter }) => {
 
 
                         <div className="col-12 d-flex justify-content-end">
-                        <Button type="submit" className="btn btn-primary">
-                        {loading?<FontAwesomeIcon icon={faSpinner} spin/> : "Registrar cuatrimestre"}
-                    </Button>                        </div>
+                            <Button type="submit" className="btn btn-primary">
+                                {loading ? <FontAwesomeIcon icon={faSpinner} spin /> : "Registrar cuatrimestre"}
+                            </Button>                        </div>
                     </form>
                 </div>
             </div>

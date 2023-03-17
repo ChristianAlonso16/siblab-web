@@ -7,6 +7,7 @@ import Modal from 'react-bootstrap/Modal';
 import Loading from '../../main/components/Loading';
 import { addMachine } from '../services/InventoryServices';
 import axios from "axios";
+import apiUrl from '../../main/utils/AppUrl';
 function Example(props) {
   const [show, setShow] = useState(false);
   const handleClose = () => {
@@ -21,12 +22,12 @@ function Example(props) {
   const [specific_features, setFeatures] = useState("");
   const [image, setImage] = useState("");
   const [options, setOptions] = useState([]);
-  const[aula,setAula] =useState(null);
+  const [aula, setAula] = useState(null);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const choseAula = async () => {
-      const choose = await axios.get('http://localhost:8080/api-siblab/laboratory/');
+      const choose = await apiUrl.get('/laboratory/');
       setOptions(choose.data.data);
     }
     choseAula();
@@ -36,7 +37,7 @@ function Example(props) {
   const onMachine = async (event) => {
     event.preventDefault();
     setLoading(true);
-    await addMachine({ name, brand, hard_disk, cpu, specific_features, image,aula }).then(res => {
+    await addMachine({ name, brand, hard_disk, cpu, specific_features, image, aula }).then(res => {
       setLoading(false);
       console.log('respuesta de registerCompu', res);
       props.onMachine(name);// enviar un item para renderizarlo en la tabla
@@ -52,7 +53,7 @@ function Example(props) {
     console.log(selectedFile);
   };
 
-  const handleOptionAula = (event)=>{
+  const handleOptionAula = (event) => {
     const idAula = event.target.value;
     setAula(idAula);
   }
@@ -78,7 +79,6 @@ function Example(props) {
                     type="file"
                     autoFocus
                     name='image'
-                    accept='image/*'
                     onChange={handleFileChange}
                   />
                 </Form.Group>
@@ -93,12 +93,12 @@ function Example(props) {
                 </Form.Group>
                 <Form.Group className="mb-3"
                 >
-                <Form.Label>Ubicacion</Form.Label>
+                  <Form.Label>Ubicacion</Form.Label>
                   <Form.Select defaultValue="Seleccione una opción..." onChange={handleOptionAula}>
-                  <option value="">Seleccione una opción</option>
-                    {options.map(option=>(
+                    <option value="">Seleccione una opción</option>
+                    {options.map(option => (
                       <option key={option.id} value={option.id}>
-                          {option.name}
+                        {option.name}
                       </option>
                     ))}
                   </Form.Select>

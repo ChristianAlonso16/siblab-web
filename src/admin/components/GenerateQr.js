@@ -20,6 +20,7 @@ const InfoModal = (props) => {
                 link.download = `${qrValue.name}.jpg`;
                 link.href = dataUrl;
                 link.click();
+                setLoading(false);
             });
     };
     

@@ -30,7 +30,7 @@ const AulasComputerComponent = ({ data }) => {
     const handleShow = (computer) => {
         setShow(true)
         setSelectedItem(computer);
-        console.log('entro amodal', computer.id)
+   //     console.log('entro amodal', computer.id)
 
     };
     if (!computers.length) return <Loading />

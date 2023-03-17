@@ -19,11 +19,11 @@ const InventoryComponent = () => {
     }
 
 
-    if (!machine.length) return <Loading />
+  //  if (!machine.length) return <Loading />
 
     const filas = machine.map((mach) => (
         <tr key={mach.id}  >
-            <td><img src={`${url}/${mach.id}`} style={{ height: "90px", width: "90px" }} alt="Computadora" /></td>
+            <td><img src={`${url}/${mach.id}`}  style={{ height: "90px", width: "90px" }} alt="Computadora" /></td>
             <td>{mach.name}</td>
             <td>{mach.hard_disk}</td>
             <td>{mach.brand}</td>
