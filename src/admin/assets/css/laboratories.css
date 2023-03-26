@@ -1,0 +1,9 @@
+.cardLaboratory{
+    background-color: #B9B9B9;
+    cursor: pointer;
+    transition: box-shadow 0.5s ease-in-out;
+}
+.cardLaboratory:hover{
+    background-color: gray;
+    transition: box-shadow 0.5s ease-in-out;
+}

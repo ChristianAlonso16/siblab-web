@@ -1,0 +1,13 @@
+.no-records {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 80vh;
+}
+
+.imag {
+    width: 200px;
+    height: auto;
+    margin-bottom: 20px;
+}

@@ -1,0 +1,78 @@
+.content{
+    margin-left: 350px;
+    margin-top: 30px;
+}
+
+.car{
+    background-color: #B9B9B9;
+    cursor: pointer;
+    transition: box-shadow 0.5s ease-in-out;
+}
+.car:hover{
+    background-color: gray;
+    transition: box-shadow 0.5s ease-in-out;
+}
+
+.headerCar{
+    margin: 10px;
+    text-align: center;
+    align-items: center;
+    vertical-align: center;
+    align-content: center;
+    height: 80px;
+
+}
+
+.verticalLin{
+    border-left: 2px solid white;
+    height: 70px;
+    position: absolute;
+    left: 35%;
+    padding-left: 25px;
+    padding-right: 15px;
+
+}
+
+.texto{
+    text-align:center;
+    color:white;
+    font-weight:bold
+}
+
+.margen{
+    /* Line 31 */
+
+    position: absolute;
+    width: 100px;
+    height: 0px;
+    top: 0px;
+
+    border: 1px solid #FFFFFF;
+    transform: rotate(142.73deg);
+}
+
+.margen2{
+    /* Line 29 */
+
+    position: absolute;
+    width: 200px;
+    height: 0px;
+    top: -10px;
+
+    border: 1px solid #FFFFFF;
+    transform: rotate(141.43deg);
+
+}
+
+.margen3{
+    /* Line 30 */
+
+    position: absolute;
+    width: 150px;
+    height: 0px;
+    top: 0px;
+    right: -100px;
+    border: 1px solid #FFFFFF;
+    transform: rotate(141.19deg);
+    padding-right: -100px;
+}

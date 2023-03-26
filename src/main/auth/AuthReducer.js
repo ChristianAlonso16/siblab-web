@@ -1,10 +1,10 @@
 import { types } from "./authTypes/Types"
 
-export const AuthReducer  = (state = {}, action) =>{
+export const AuthReducer = (state = {}, action) => {
 
-    switch(action.type){
+    switch (action.type) {
         case types.login:
-            return{
+            return {
                 ...state,
                 logged: true,
                 user: action.payload
@@ -12,9 +12,13 @@ export const AuthReducer  = (state = {}, action) =>{
 
         case types.logout:
             return {
-                logged:false
+                logged: false
             }
-            
+        case 'IS_LOADING':
+            return {
+                ...state,
+                isLoading: action.payload,
+            };
         default:
             return state;
     }

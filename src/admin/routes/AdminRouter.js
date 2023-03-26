@@ -9,6 +9,8 @@ import Aulas from '../pages/Aulas';
 import AulasComputer from '../pages/AulasComputer';
 import RegisterQuater from '../pages/RegisterQuater';
 import RegisterClassroom from '../pages/RegisterClassroom';
+import PageNotFound from '../../main/pages/PageNotFound';
+import GetTeachers from '../pages/GetTeachers';
  const AdminRouter = () => {
    return (
       <>
@@ -21,8 +23,9 @@ import RegisterClassroom from '../pages/RegisterClassroom';
             <Route path="registrarCuatrimestre" element={<><SidebarAdmin /><RegisterQuater/></>} />
             <Route path="registrarDocente" element={<><SidebarAdmin /><RegisterTeacher/></>} />
             <Route path="registrarGrupo" element={<><SidebarAdmin /><RegisterClassroom/></>} />
+            <Route path="docentes" element={<><SidebarAdmin /><GetTeachers/></>} />
             <Route path="/" element={<Navigate to={"/admin/listaReportes"} />} />
-            <Route path="/*" element={<>no te ecnontre</>} />
+            <Route path="/*" element={<PageNotFound />} />
          </Routes>
       </>
    )

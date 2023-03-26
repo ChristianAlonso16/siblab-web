@@ -1,0 +1,10 @@
+.contentList{
+    margin-left: 300px;
+    border-radius: 15px !important;
+}
+
+.table-border{
+    max-width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+}

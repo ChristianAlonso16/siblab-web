@@ -13,18 +13,16 @@ export const Login = () => {
   const onLogin = async (data) =>{
     console.log('hola desde login',data)
     await LoginService(data).then(response =>{
-      data.setErrors(null);
-      data.setLoading(false);
+
       console.log('respuesta de siblab',response);
       login(response.data)
       if(response.data.role == "Admin") 
       navigate("/admin/listaReportes",{replace:true});
       if(response.data.role == "Teacher") 
-      navigate('/docente/listaReportes',{replace:true});
+      navigate('/docente/ListReports',{replace:true});
 
     }).catch(error=>{
       console.log('error desde login.js',error)
-      data.setLoading(false);
     })
   }
 

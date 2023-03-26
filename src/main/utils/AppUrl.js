@@ -16,7 +16,7 @@ apiUrl.interceptors.response.use(
 );
 apiUrl.interceptors.request.use(
     config =>{
-        config.headers['Content-Type'] = 'application/json';
+
         return config;
     },
     error => {

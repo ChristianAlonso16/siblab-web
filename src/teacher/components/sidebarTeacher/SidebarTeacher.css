@@ -1,0 +1,29 @@
+.sidebar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    top: 0;
+}
+
+.imagen {
+    width: auto;
+    height: 55px;
+
+}
+
+.bgTeacher {
+    Background-color: #2B8945;
+}
+
+.menu:hover {
+    background-color: #339e52;
+}
+
+.vertical {
+    border-left: 2px solid white;
+    height: 50px;
+    left: 50%;
+}
+.sidenav-icon {
+    margin-right: 10px;
+}

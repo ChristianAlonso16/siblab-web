@@ -1,17 +1,14 @@
 import React from 'react'
+import { onFail, onSuccess } from '../../main/utils/Alerts';
 import RegisterDocenteComponent from '../components/RegisterDocenteComponent'
 import {RegisterT} from '../services/TeacherService';
 const RegisterTeacher = () => {
   
   const onTeacher = async(data) =>{
-    console.log('hola desde registerTeacher',data);
     await RegisterT(data).then(response =>{
-      data.setLoading(false);
-      console.log('respuesta de teacher',response);
-
+      response.data.message === "Usuario existente" ? onFail("El docente ya esta registrado") :onSuccess("Docente registrado")
     }).catch(error =>{
       console.log('error desde registerTeacher', error);
-      data.setLoading(false);
     })
   }
   return (

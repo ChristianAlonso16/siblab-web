@@ -1,0 +1,89 @@
+
+.content{
+    margin-left: 350px;
+    margin-top: 50px;
+}
+
+.carta{
+    height: auto;
+    bottom: 15px;
+    background-color: #D9D9D9;
+    padding: 0px 20px 20px;
+}
+
+.input{
+
+    padding: 5px;
+    border: none;
+    background: rgba(255, 255, 255, 0.42);
+    border-radius: 10px;
+    width: 250px;
+}
+
+.column{
+    margin: 40px;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    margin: 10px;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: #D9D9D9;
+    border: none;
+}
+
+.checkbox-label {
+    margin-left: 10px;
+    font-size: 16px;
+    color: #333;
+}
+
+/* Estilos para el checkbox */
+input[type="checkbox"] {
+    position: relative;
+    width: 18px;
+    height: 18px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: #fff;
+    border: 2px solid #666;
+    border-radius: 4px;
+    outline: none;
+    cursor: pointer;
+}
+
+input[type="checkbox"]:checked::before {
+
+    position: absolute;
+    top: 2px;
+    left: 6px;
+    font-size: 16px;
+    color: #fff;
+}
+
+input[type="checkbox"]:checked {
+    background-color: #0066cc;
+    border-color: #0066cc;
+}
+
+.reports{
+    overflow: auto;
+    max-height: 200px;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.botton{
+    position: fixed;
+    bottom: 60px;
+    right: 30px;
+}
+
+.error-message {
+    color: red;
+    margin-top: 0.3rem;
+    font-size: 12px;
+}

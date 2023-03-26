@@ -6,12 +6,12 @@ import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 import Loading from '../../main/components/Loading';
 import { addMachine } from '../services/InventoryServices';
-import axios from "axios";
 import apiUrl from '../../main/utils/AppUrl';
 function Example(props) {
   const [show, setShow] = useState(false);
   const handleClose = () => {
     setShow(false);
+    setImageUrl(null)
   }
   const handleShow = () => setShow(true);
 
@@ -21,6 +21,7 @@ function Example(props) {
   const [cpu, setCpu] = useState("");
   const [specific_features, setFeatures] = useState("");
   const [image, setImage] = useState("");
+  const [imageUrl, setImageUrl] = useState(null);
   const [options, setOptions] = useState([]);
   const [aula, setAula] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -34,6 +35,18 @@ function Example(props) {
 
   }, []);
 
+
+  const handleFileChange = (event) => {
+    const selectedFile = event.target.files[0];
+    setImage(selectedFile);
+    const imageURL = URL.createObjectURL(selectedFile);
+    setImageUrl(imageURL);
+  };
+
+  const handleOptionAula = (event) => {
+    const idAula = event.target.value;
+    setAula(idAula);
+  }
   const onMachine = async (event) => {
     event.preventDefault();
     setLoading(true);
@@ -47,20 +60,13 @@ function Example(props) {
       setLoading(false);
     });
   }
-  const handleFileChange = (event) => {
-    const selectedFile = event.target.files[0];
-    setImage(selectedFile);
-    console.log(selectedFile);
-  };
 
-  const handleOptionAula = (event) => {
-    const idAula = event.target.value;
-    setAula(idAula);
-  }
+
   if (loading === true) return <Loading />
+
   return (
     <>
-      <Button className='btn-md mt-5 mb-5' variant="primary" onClick={handleShow}>
+      <Button className='btn-md mt-5 mb-5' style={{ backgroundColor: " rgb(21 47 71)" }} onClick={handleShow}>
         Registrar computadora
       </Button>
 
@@ -73,7 +79,7 @@ function Example(props) {
             encType="multipart/form-data">
             <div className='row'>
               <div className='col '>
-                <img src={image} className='m-2 ms-5 ' style={{ height: "100px", width: "100px" }} />
+                <img src={imageUrl} className='m-2 ms-5 ps-5' style={{ height: "102px", width: "auto" }} />
                 <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                   <Form.Control
                     type="file"
@@ -144,7 +150,7 @@ function Example(props) {
               <Button variant="secondary" type='submit' onClick={handleClose}>
                 Cerrar
               </Button>
-              <Button variant="primary" type='submit' onClick={handleClose} >
+              <Button style={{ backgroundColor: "rgb(21 47 71)" }} type='submit' onClick={handleClose} >
                 {loading ? <FontAwesomeIcon icon={faSpinner} spin /> : "Registrar computadora"}
               </Button>
             </Modal.Footer>

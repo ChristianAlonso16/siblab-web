@@ -1,18 +1,19 @@
 import axios from "axios";
+import apiUrl from "../../main/utils/AppUrl";
 
-export const RegisterQ = async (form) => {
+export const RegisterC = async (form) => {
     
-    console.log('Hola desde service', form.name);
+    console.log('Hola desde classservice', form);
     try {
-        const dataTeacher = {
-            semester: form.name,
-            start_semester: form.fechaInicio,
-            finish_semester: form.fechaFin,
-            user_id: {id:form.docente},
+        const datacClassrom = {
+            name: form.name,
+            career: form.career,
+            grade: form.grade,
+            period: {id:parseInt(form.period)},
         };
-       const url = 'http://localhost:8080/api-siblab/period/';
+       const url = 'http://localhost:8080/api-siblab/classroom/';
      
-       const response = await axios.post(url,dataTeacher);
+       const response = await apiUrl.post('http://localhost:8080/api-siblab/classroom/',datacClassrom);
        console.log('session',response);
        return response;
     } catch (error) {

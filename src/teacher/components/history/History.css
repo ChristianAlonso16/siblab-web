@@ -1,0 +1,45 @@
+.contentList{
+    margin-left: 300px;
+    border-radius: 15px !important;
+}
+
+.table-border{
+    max-width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+}
+
+.fila {
+    border-bottom: 1px solid #ddd;
+    transition: background-color 0.2s;
+}
+
+.fila:hover {
+    background-color: #f5f5f5;
+}
+
+.btn-desplegar {
+    border: none;
+    background-color: transparent;
+    font-size: 16px;
+    color: #666;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.btn-desplegar.abierto {
+    transform: rotate(180deg);
+}
+
+.btn-desplegar:hover {
+    color: #000;
+}
+
+.contenido {
+    padding: 10px;
+    background-color: #f5f5f5;
+}
+
+.shadowCol td{
+    box-shadow: 0px 2px 0px rgba(0, 0, 0, 1) !important;
+}
