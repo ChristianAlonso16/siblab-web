@@ -31,7 +31,7 @@ const InfoModal = (props) => {
                 <Modal.Title>{qrValue.name}</Modal.Title>
             </Modal.Header>
             <Modal.Body className='text-center '>
-        {<QRCode  id="qr-code" value={`Id:${qrValue.id}, Nombre:${qrValue.name}, ${url}/${qrValue.id}`} size={256} fgColor="#000000" bgColor="#ffffff" />}
+        {<QRCode  id="qr-code" value={`Id:${qrValue.id}`} size={256} fgColor="#000000" bgColor="#ffffff" />}
                 <Modal.Footer>
                     <Button variant="secondary" type='submit' onClick={handleClose}>
                         Cerrar

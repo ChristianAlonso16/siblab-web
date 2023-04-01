@@ -1,8 +1,8 @@
-import {HistoryComponent} from "../components/history/HistoryComponent";
+import Historial from "../components/Tab/Tab";
 
 
 export const HistoryPage = () =>{
     return(
-        <HistoryComponent/>
+        <Historial/>
     )
 }

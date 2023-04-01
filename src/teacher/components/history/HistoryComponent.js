@@ -2,9 +2,7 @@ import Loading from "../../../main/components/Loading";
 import image from "../listReports/img.png";
 import Button from "react-bootstrap/Button";
 import {BsEye} from "react-icons/bs";
-import {ViewReport} from "../viewReport/ViewReport";
 import React, {useContext, useEffect, useState} from "react";
-import {getLaboratoryById} from "../../helpers/getLaboratoryById";
 import './History.css'
 import {getAllAttachments} from "../../helpers/getAllAttachments";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
@@ -61,13 +59,16 @@ export const HistoryComponent = () =>{
     const fillAttachments = async () =>{
         setLoading(true);
         const response = await getAllAttachments();
+        console.log(response)
         if (response === 'ERROR'){
             setApiError(true);
         }else {
             setApiError(false);
             let filter = [];
-            response.sort((a,b)=> new Date(b.create_at).getTime() - new Date(a.create_at).getTime())
-            for (let res of response ){
+            const historyTeacher = response.filter(obj => obj.report.length === 0)
+            console.log('filtro',historyTeacher)
+            historyTeacher.sort((a,b)=> new Date(b.create_at).getTime() - new Date(a.create_at).getTime())
+            for (let res of historyTeacher ){
                 if (res.email === user.username)
                     filter.push(res);
             }
@@ -83,13 +84,13 @@ export const HistoryComponent = () =>{
     const handleShow = async (attachment) =>{
         const users = await getAllStudents();
         await setData({...attachment, users});
-        console.log(data)
+        console.log("historyComponet",data)
         setShowModal(true);
     }
 
     return( loading ? <Loading/> : apiError ? <></> : attachments.length < 1 ?
             <div style={{marginLeft:'300px'}}><NoRecordsFound text ={'Aún no tienes historial'}/> </div>:
-            <div className="p-5 contentList">
+            <div className="ps-5 pe-3 pt-3 contentList">
                 <table className=" table table-hover table-secondary table-border  ">
                     <thead>
                     <tr>

@@ -45,14 +45,7 @@ const {user,logout} = useContext(AuthContext);
                     Espacios
                 </a>
             </li>
-            <hr/>
-
-            <li>
-                <a href="/admin/registrarDocente" className="nav-link text-white menuA">
-                   <FaUserAlt className='sidenav-icon'/>
-                    Registrar Docente
-                </a>
-            </li>
+        
             <hr/>
             <li>
                 <a href="/admin/docentes" className="nav-link text-white menuA">
@@ -70,19 +63,21 @@ const {user,logout} = useContext(AuthContext);
             </li>
             <hr/>
             <li>
-                <a href="/admin/registrarCuatrimestre" className="nav-link text-white menuA">
+                <a href="/admin/cuatrimestres" className="nav-link text-white menuA">
                    <MdOutlineInventory className='sidenav-icon'/>
-                   Asignar Cuatrimestre
+                   Cuatrimestres
                 </a>
             </li>
             <hr/>
+
             <li>
-                <a href="/admin/registrarGrupo" className="nav-link text-white menuA">
+                <a href="/admin/grupos" className="nav-link text-white menuA">
                    <MdOutlineInventory className='sidenav-icon'/>
-                   Registrar Grupo
+                   Grupos
                 </a>
             </li>
             <hr/>
+
 
         </ul>
         <hr/>

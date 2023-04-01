@@ -49,7 +49,7 @@ const InventoryComponent = () => {
             <div className=" d-md-flex  justify-content-md-end">
                 <Example onMachine={findMachine} />
             </div>
-            <table className=" table border shadow table-hover table-striped text-center  ">
+            <table className=" table border shadow-lg table-hover table-striped text-center  ">
                 <thead className="text-white fw-light" style={{ backgroundColor: "green" }}>
                     <tr >
                         <th>Imagen</th>

@@ -6,6 +6,7 @@ import { Button } from 'react-bootstrap';
 
 import InfoModal from './GenerateQr';
 import { useParams } from 'react-router-dom';
+import { NoRecordsFound } from '../../teacher/components/noRecordsFound/NoRecordsFoundComponent';
 const url = 'http://localhost:8080/api-siblab/image';
 
 const AulasComputerComponent = ({ data }) => {
@@ -33,11 +34,12 @@ const AulasComputerComponent = ({ data }) => {
    //     console.log('entro amodal', computer.id)
 
     };
-    if (!computers.length) return <Loading />
+    if (!computers.length) return<div style={{marginLeft:'300px'}}><NoRecordsFound text ={'Aún no tiene computadoras asignadas este laboratorio'}/> </div>
+
 
     const filas = computers.map((computer) => (
         <tr key={computer.id}  >
-            <td><img src={`${url}/${computer.id}`} style={{ height: "90px", width: "90px" }} alt="Computadora" /></td>
+            <td><img src={`${url}/${computer.id}`}style={{ height: "80px", width: "auto" }}  alt="Computadora" /></td>
             <td>{computer.name}</td>
             <td>{computer.hard_disk}</td>
             <td>{computer.brand}</td>
@@ -45,7 +47,7 @@ const AulasComputerComponent = ({ data }) => {
             <td>{computer.status === true ? 'Activa' : 'Inactiva'}</td>
             <td>
                 <Button className='btn-sm btn' style={{backgroundColor:" rgb(21 47 71)"}} onClick={() => handleShow(computer)}>
-                    Generar codigo Qr
+                    Generar codigo QR
                 </Button>
                
             </td>
@@ -54,7 +56,6 @@ const AulasComputerComponent = ({ data }) => {
     ))
     
     return (
-        
         <div className="container-sm pt-5 mt-5" style={{ width: "50%", marginLeft: "470px" }}>
             <table className=" table border shadow table-hover table-striped text-center">
                 <thead className="text-white fw-light" style={{ backgroundColor: "green" }}>

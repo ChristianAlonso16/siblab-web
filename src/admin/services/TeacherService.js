@@ -2,7 +2,7 @@ import axios from "axios";
 import apiUrl from "../../main/utils/AppUrl";
 
 export const RegisterT = async (form) => {
-    console.log('service',form)
+    console.log('serviceT',form)
 
     try {
         const dataTeacher = {
@@ -14,6 +14,7 @@ export const RegisterT = async (form) => {
         };
        const url = 'http://localhost:8080/api-siblab/user/';
        const response = await apiUrl.post(url,dataTeacher);
+       
        return response;
     } catch (error) {
         console.log("eror de tService",error)

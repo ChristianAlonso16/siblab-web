@@ -12,8 +12,8 @@
     border-radius: 0.7rem;
     border: 0.5px solid darkgrey;
     padding: 5px;
+    margin-top: 10px;
 }
-
 .report:hover{
     box-shadow: 0 4px 5px cornflowerblue;
     border: 0.5px solid cornflowerblue;
@@ -32,10 +32,10 @@
 }
 
 .viewReport{
-    width: 100%;
-    height: 100%;
+    width: 250px;
+    height: 340px;
     padding: 10px;
     border: 1px solid darkgrey;
     border-radius: 1rem;
-    overflow: auto;
+    overflow: none;
 }

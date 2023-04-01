@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react'
+import { GetC } from '../services/ClassroomService';
+import ModalRegisterGroup from './ModalRegisterGroup';
 import ReactPaginate from 'react-paginate';
-import { GetTeacher } from '../services/TeacherService';
-import ModalRegisterTeacher from './ModalRegisterTeacher';
 import "../assets/css/paginate.css"
 import apiUrl from '../../main/utils/AppUrl';
+import { AiOutlineDelete, AiOutlineEdit } from 'react-icons/ai';
 import { Button } from 'react-bootstrap';
-import{AiFillEdit, AiOutlineDelete, AiOutlineEdit} from 'react-icons/ai';
-
-const GetTeachersComponent = () => {
+const GetGroupsComponent = () => {
     const [options, setOptions] = useState([]);
-    const [periods, setPeriods] = useState([]);
     const [pageNumber, setPageNumber] = useState(0);
+    const [periods, setPeriods] = useState([]);
+
     const itemsPerPage = 7; // cantidad de items que se mostrarán por página
     const pagesVisited = pageNumber * itemsPerPage;
     const pageCount = Math.ceil(options.length / itemsPerPage);
@@ -30,14 +30,29 @@ const GetTeachersComponent = () => {
 
     useEffect(() => {
         getPeriods()
-        choseTeacher();
+        sortData();
 
     }, []);
-    const choseTeacher = async (newItem) => {
-        const response = await GetTeacher();
-        const filteredTeacher = response.filter(objeto => objeto.role === 'Teacher');
-        setOptions(filteredTeacher, newItem);
-        console.log('filtro', filteredTeacher);
+    const sortData = async (newItem) => {
+        const response = await getGroups();
+        setOptions(response, newItem);
+
+    }
+    const getGroups = async () => {
+        const response = await GetC();
+        const sortedData = response.sort((a, b) => {
+            const aNum = Number(a.grade);
+            const bNum = Number(b.grade);
+            if (aNum < bNum) {
+                return -1;
+            }
+            if (aNum > bNum) {
+                return 1;
+            }
+            return 0;
+        });
+
+        return sortedData;
     }
     const periodos = [
         { id: 1, nombre: "enero - abril", inicio: "1/1", fin: "30/4" },
@@ -64,14 +79,16 @@ const GetTeachersComponent = () => {
             return fechaInicio >= inicioPeriodo && fechaFin <= finPeriodo;
         }
     });
-    const filas = tablaFiltrada.slice(pagesVisited, pagesVisited + itemsPerPage).map((option) => (
-        <tr key={option.user.id}  >
-            <td>{option.user.name}</td>
-            <td>{option.user.surname}</td>
-            <td>{option.user.email}</td>
-            <td>{option.user.status === true ? 'Activo' : 'Inactivo'}</td>
-            <td> 
-                <div>
+    const filas = tablaFiltrada.slice(pagesVisited, pagesVisited + itemsPerPage)
+        .map((option) => {
+
+            const classroomsRows = option.classrooms.map((classroom) => (
+                <tr key={classroom.id}  >
+                    <td>{classroom.career}</td>
+                    <td>{classroom.grade}</td>
+                    <td>{classroom.name}</td>
+                    <td>
+                    <div>
                 <Button variant="primary" size="sm">
                    <AiOutlineEdit />
                 </Button>
@@ -79,15 +96,18 @@ const GetTeachersComponent = () => {
                     <AiOutlineDelete/>
                 </Button>
                    </div>
-               
-            </td>
-        </tr>
-    ))
-    return (
+                    </td>
 
+                </tr>
+            ));
+            return classroomsRows;
+        })
+        .flat();
+
+    return (
         <div className="container-sm pt-5 " style={{ width: "50%", marginLeft: "470px" }}>
             <div className=" d-md-flex  justify-content-md-end">
-                <ModalRegisterTeacher onTeacher={choseTeacher} />
+                <ModalRegisterGroup onGroup={sortData} />
             </div>
             <select
                 className="form-select"
@@ -104,12 +124,10 @@ const GetTeachersComponent = () => {
             <table className=" table border shadow-lg table-hover table-striped text-center  ">
                 <thead className="text-white fw-light" style={{ backgroundColor: "green" }}>
                     <tr >
+                        <th>Carrera</th>
+                        <th>Grado</th>
                         <th>Nombre</th>
-                        <th>Apellido paterno</th>
-                        <th>Correo</th>
-                        <th>Estado</th>
                         <th>Acciones</th>
-
                     </tr>
                 </thead>
                 <tbody  >
@@ -129,9 +147,8 @@ const GetTeachersComponent = () => {
                     renderOnZeroPageCount={null}
                 /> : ""
             }
-
         </div>
 
     )
 }
-export default GetTeachersComponent
+export default GetGroupsComponent

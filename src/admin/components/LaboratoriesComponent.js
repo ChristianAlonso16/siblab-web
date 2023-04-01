@@ -3,6 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import { getBuilding } from '../services/LaboratoriesService';
 import Loading from '../../main/components/Loading'
 import { BsFillBuildingFill } from 'react-icons/bs';
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+import docencia4 from "../assets/images/docencia4.jpg"
 import "../assets/css/laboratories.css"
 import { NoRecordsFound } from '../../teacher/components/noRecordsFound/NoRecordsFoundComponent';
 const LaboratoriesComponent = () => {
@@ -35,28 +38,29 @@ const LaboratoriesComponent = () => {
 
     }
 
-    return ( loading ? <Loading /> : apiError ? <></> : building.length < 1 ?
-    <div style={{marginLeft:'300px'}}><NoRecordsFound text ={'Aún no tienes laboratorios'}/> </div>:
-        <div className="container-md py-5 mt-5  " style={{ paddingLeft: "80px" }}>
+    return (loading ? <Loading /> : apiError ? <></> : building.length < 1 ?
+        <div style={{ marginLeft: '300px' }}><NoRecordsFound text={'Aún no tienes laboratorios'} /> </div> :
+        <div className="container py-3 mt-3  " style={{ width: "50%", marginLeft: "490px"}}>
             <div className=" row g-3 d-flex" >
                 {building.map((build) => (
 
-                    <div className="col-md-6 d-flex justify-content-end " key={build.id} >
-                        <div className="col-lg-7">
-                            <div className="card rounded-5  cardLaboratory" onClick={() => irAulas(build.id)}>
-                                <div className="row g-0 ">
-                                    <div className="col-md-6 col-lg-5 d-none d-md-block text-center pt-2">
-                                        <BsFillBuildingFill size={100} />
-                                    </div>
-                                    <div className="col  d-flex align-items-center">
-                                        <div className="card-body p-4 p-lg-5  text-white">
-                                            {build.name}
-                                        </div>
-                                    </div>
-                                </div>
+
+                    <div className="col-6 d-flex justify-content-end " key={build.id} >
+                        <div className="col">
+                            <div className="row g-0">
+                                <Card style={{ width: '18rem', cursor: "pointer" }} onClick={() => irAulas(build.id)}>
+                                    <Card.Img variant="top" src={docencia4} />
+                                    <Card.Body >
+                                        <Card.Title>{build.name}</Card.Title>
+                                        <Card.Text>
+                                            {build.location}
+                                        </Card.Text>
+                                    </Card.Body>
+                                </Card>
                             </div>
                         </div>
                     </div>
+
                 ))}
             </div>
 
