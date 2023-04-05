@@ -44,7 +44,7 @@ const AulasComponent = () => {
     return (
         loading ? <Loading /> : apiError ? <></> : aula.length < 1 ?
         <div style={{marginLeft:'300px'}}><NoRecordsFound text ={'Aún no tiene aulas asignadas este edificio'}/> </div>:
-        <div className="container p-3 fw-normal  mt-2 mb-5    " style={{ width: "50%", marginLeft: "470px" }}>
+        <div className="container p-3 fw-normal  pt-5 mt-5 mb-5    " style={{ width: "50%", marginLeft: "470px" }}>
             <div style={{ backgroundColor: "green", width: "auto", height: "30px" }}></div>
             <table className="table table-hover table-secondary border text-center shadow ">
                 <thead >

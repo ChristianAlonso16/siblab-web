@@ -11,19 +11,21 @@ const url = 'http://localhost:8080/api-siblab/image';
 
 const AulasComputerComponent = ({ data }) => {
     const { id } = useParams();
-
+    const [loading, setLoading] = useState(false);
     const [computers, setComputers] = useState([]);
     const [selectedItem, setSelectedItem] = useState('');
     const [show, setShow] = useState(false);
 
 
     useEffect(() => {
+        setLoading(true);
         const findMachine = async () => {
             const response = await getComputerAulas();
             const aulaFiltro = response.data.data;
             const filteredComputer = aulaFiltro.filter(objeto => objeto.laboratory.id === parseInt(id))
             setComputers(filteredComputer);
         }
+        setLoading(false);
         findMachine();
     }, [])
 
@@ -34,7 +36,7 @@ const AulasComputerComponent = ({ data }) => {
    //     console.log('entro amodal', computer.id)
 
     };
-    if (!computers.length) return<div style={{marginLeft:'300px'}}><NoRecordsFound text ={'Aún no tiene computadoras asignadas este laboratorio'}/> </div>
+    
 
 
     const filas = computers.map((computer) => (
@@ -56,6 +58,8 @@ const AulasComputerComponent = ({ data }) => {
     ))
     
     return (
+        loading ? <Loading /> : computers.length < 1 ? <div style={{marginLeft:'300px'}}>
+        <NoRecordsFound text ={'Aún no tiene computadoras asignadas este laboratorio'}/> </div>:
         <div className="container-sm pt-5 mt-5" style={{ width: "50%", marginLeft: "470px" }}>
             <table className=" table border shadow table-hover table-striped text-center">
                 <thead className="text-white fw-light" style={{ backgroundColor: "green" }}>

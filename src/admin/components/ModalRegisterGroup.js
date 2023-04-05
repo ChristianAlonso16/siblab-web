@@ -7,6 +7,7 @@ import * as Yup from 'yup';
 import Swal from 'sweetalert2';
 import apiUrl from '../../main/utils/AppUrl';
 import { RegisterC } from '../services/ClassroomService';
+import Loading from '../../main/components/Loading';
 const ModalRegisterGroup = (props) => {
     const [loading, setLoading] = useState(false);
     const [docentes, setDocente] = useState([]);
@@ -80,18 +81,19 @@ const ModalRegisterGroup = (props) => {
         }
     })
     const onGroup = async (values) => {
-        console.log("onLClass", values);
         setLoading(true);
         try {
             setShow(false);
            await RegisterC(values);
+           setTimeout(() => {
+            setLoading(false);
+            window.location.reload();
+        }, 3000);
             props.sortData(values.values.career)
-
         } catch (error) {
+            setShow(false);
             setLoading(false);
         }
-        setLoading(false);
-
     }
     
     const showConfirmationSwal = ({values,idPeriod}) => {
@@ -108,6 +110,7 @@ const ModalRegisterGroup = (props) => {
         });
     }
    
+    if (loading) return <Loading />
 
     return (
         <>

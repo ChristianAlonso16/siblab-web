@@ -3,8 +3,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap'
 import Example from '../components/RegisterComputer'
 import Loading from '../../main/components/Loading';
-import { getInventory } from '../services/InventoryServices';
+import { ChangeStatusMachine, getInventory } from '../services/InventoryServices';
 import { NoRecordsFound } from '../../teacher/components/noRecordsFound/NoRecordsFoundComponent';
+import { AiOutlineDelete } from 'react-icons/ai';
+import ModalEditComputer from './ModalEditComputer';
+import { Button } from 'react-bootstrap';
+import Swal from 'sweetalert2';
+import { onSuccess } from '../../main/utils/Alerts';
 
 const url = 'http://localhost:8080/api-siblab/image';
 const InventoryComponent = () => {
@@ -30,7 +35,34 @@ const InventoryComponent = () => {
        setLoading(false);
     }
     
+    const changeStatus = async (mach) => {
+        setLoading(true);
+        try {
+            console.log("staus", mach.id)
+            const response = await ChangeStatusMachine(mach.id);
+            mach.status === true ? onSuccess("Desactivado") : onSuccess("Activado");
+            setTimeout(() => {
+                setLoading(false);
+                window.location.reload();
+            }, 2000);
+        } catch (error) {
+            setLoading(false);
+        }
 
+    }
+    const showConfirmationSwal = (mach) => {
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: '¿Quieres cambiar el estado del equipo?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Sí',
+            cancelButtonText: 'No',
+            preConfirm: async () => {
+                await changeStatus(mach);
+            }
+        });
+    }
 
     const filas = machine.map((mach) => (
         <tr key={mach.id}  >
@@ -40,8 +72,19 @@ const InventoryComponent = () => {
             <td>{mach.brand}</td>
             <td>{mach.cpu}</td>
             <td>{mach.status === true ? 'Activa' : 'Inactiva'}</td>
+            <td>
+                <div>
+                    <ModalEditComputer computer={mach}/>
+                    <Button variant="danger" size="sm" onClick={() => showConfirmationSwal(mach)}>
+                        <AiOutlineDelete />
+                    </Button>
+                </div>
+
+            </td>
         </tr>
     ))
+    if (loading) return <Loading />
+
     return (
     //     loading ? <Loading /> : apiError ? <></> : machine.length < 1 ?
     // <div style={{marginLeft:'300px'}}><NoRecordsFound text ={'Aún no tienes inventario'}/> </div>:
@@ -58,6 +101,7 @@ const InventoryComponent = () => {
                         <th>Marca</th>
                         <th>Capacidad</th>
                         <th>Estado</th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody  >

@@ -110,9 +110,7 @@ const GetTeachersComponent = () => {
             <td>{option.user.status === true ? 'Activo' : 'Inactivo'}</td>
             <td>
                 <div>
-                    <Button style={{ backgroundColor: " rgb(21 47 71)" }} size="sm" onClick={() => handleShow(option.user)}>
-                        <AiFillEdit />
-                    </Button>
+                    <ModalEditTeacher docente={option.user}/>
                     <Button variant="danger" size="sm" onClick={() => showConfirmationSwal(option.user)}>
                         <AiOutlineDelete />
                     </Button>
@@ -156,12 +154,7 @@ const GetTeachersComponent = () => {
                     {filas}
                 </tbody>
             </table>
-            <ModalEditTeacher
-                show={show}
-                handleClose={() => (setShow(false))}
-                docente={docenteEdit}
-                onTeacher={choseTeacher}
-            />
+           
             {options.length > 7 ?
                 <ReactPaginate
 

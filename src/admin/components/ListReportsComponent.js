@@ -77,7 +77,7 @@ export const ListReportsComponent = () =>{
 
     return( loading ? <Loading/> : apiError ? <></> : attachments.length < 1 ?
             <div style={{marginLeft:'300px'}}><NoRecordsFound text ={'Aún no tienes historial'}/> </div>:
-            <div className="p-5 contentListA">
+            <div  className="container-sm py-3 mt-3" style={{ width: "50%", marginLeft: "470px" }}>
                 <table className=" table table-hover table-secondary table-borderA  ">
                     <thead>
                     <tr>

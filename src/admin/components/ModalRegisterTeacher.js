@@ -51,7 +51,7 @@ const ModalRegisterTeacher = (props) => {
         setLoading(true);
         try {
             await RegisterT(values).then(response => {
-                response.data.message === "Usuario existente" ? onFail("El docente ya esta registrado") : onSuccess("Docente registrado" && setShow(false))
+                response.data.message === "Usuario existente" ? onFail("El docente ya esta registrado") : onSuccess("Docente registrado" ) && setShow(false)
             }).catch(error => {
                 console.log('error desde registerTeacher', error);
                 setShow(false);

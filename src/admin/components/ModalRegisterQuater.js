@@ -7,6 +7,7 @@ import * as Yup from 'yup';
 import Swal from 'sweetalert2';
 import { differenceInCalendarMonths } from 'date-fns';
 import { RegisterQ } from '../services/QuarterService';
+import Loading from '../../main/components/Loading';
 
 const ModalRegisterQuater = (props) => {
     const [loading, setLoading] = useState(false);
@@ -62,11 +63,14 @@ const ModalRegisterQuater = (props) => {
         try {
             setShow(false);
            await RegisterQ(values);
+           setTimeout(() => {
+            setLoading(false);
+            window.location.reload();
+        }, 3000);
            props.sortData(values.name)
         } catch (error) {
             setLoading(false);
         }
-        setLoading(false);
     }
     const showConfirmationSwal = (values) => {
         Swal.fire({
@@ -81,6 +85,8 @@ const ModalRegisterQuater = (props) => {
             }
         });
     }
+    if (loading) return <Loading />
+
     return (
         <>
             <Button className='btn-md  mb-5' style={{ backgroundColor: " rgb(21 47 71)" }} onClick={handleShow}>

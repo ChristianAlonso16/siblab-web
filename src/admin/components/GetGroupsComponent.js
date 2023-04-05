@@ -85,9 +85,9 @@ const GetGroupsComponent = () => {
             const classroomsRows = option.classrooms.map((classroom) => (
                 <tr key={classroom.id}  >
                     <td>{classroom.career}</td>
-                    <td>{classroom.grade}</td>
+                    <td>{option.semester.name}</td>
                     <td>{classroom.name}</td>
-                    <td>
+                    {/* <td>
                     <div>
                 <Button variant="primary" size="sm">
                    <AiOutlineEdit />
@@ -96,7 +96,7 @@ const GetGroupsComponent = () => {
                     <AiOutlineDelete/>
                 </Button>
                    </div>
-                    </td>
+                    </td> */}
 
                 </tr>
             ));
@@ -127,7 +127,7 @@ const GetGroupsComponent = () => {
                         <th>Carrera</th>
                         <th>Grado</th>
                         <th>Nombre</th>
-                        <th>Acciones</th>
+                        {/* <th>Acciones</th> */}
                     </tr>
                 </thead>
                 <tbody  >

@@ -7,22 +7,30 @@ import * as Yup from 'yup';
 import Swal from 'sweetalert2';
 import { EditT } from '../services/TeacherService';
 import { onFail, onSuccess } from '../../main/utils/Alerts';
+import Loading from '../../main/components/Loading';
+import { AiFillEdit } from 'react-icons/ai';
 
 const ModalEditTeacher = (props) => {
-    const { show, docente, handleClose } = props;
+    const { docente } = props;
     const [loading, setLoading] = useState(false);
+
+    const [show, setShow] = useState(false);
+    const handleClose = () => {
+        setShow(false);
+    }
+    const handleShow = () => setShow(true);
     const id = docente.id;
 
     useEffect(() => {
         formik.setValues({
-            name: docente?.name || "", 
+            name: docente?.name || "",
             surname: docente?.surname || "",
             email: docente?.email || "",
-            password:  "",
+            password: "",
 
-          });
-    }, [docente]); 
-    
+        });
+    }, [docente]);
+
     const formik = useFormik({
         initialValues: {
             name: docente?.name || "", // Utiliza un valor vacío si docente es undefined o null
@@ -50,23 +58,25 @@ const ModalEditTeacher = (props) => {
             password: Yup.string().required("Contraseña obligatoria")
         }),
         onSubmit: async (values) => {
-            show === false ? show() : await showConfirmationSwal(values);
+            show === false ? setShow(false) : await showConfirmationSwal(values);
         }
     })
 
     const onTeacher = async (values) => {
         setLoading(true);
         try {
-            await EditT({ values, id }).then(response => {
-                onSuccess("Docente editado")
-            }).catch(error => {
-                onFail("Fallo la operacion")
-            })
-            props.onTeacher(values.name);
+            const response = await EditT({ values, id })
+            onSuccess("Docente actualizado" )
+             setShow(false)
+            setTimeout(() => {
+                setLoading(false);
+                window.location.reload();
+            }, 3000);
         } catch (error) {
+            setShow(false);
+            onFail("Fallo la operacion")
             setLoading(false);
         }
-        setLoading(false);
     }
     const showConfirmationSwal = (values) => {
         Swal.fire({
@@ -79,11 +89,16 @@ const ModalEditTeacher = (props) => {
             preConfirm: async () => {
                 await onTeacher(values);
             }
-        }).then(() => window.location.reload())
-            ;
+        });
     }
+    if (loading) return <Loading />
+
     return (
         <>
+
+            <Button className='btn-sm ' style={{ backgroundColor: " rgb(21 47 71)" }} onClick={handleShow}>
+                <AiFillEdit />
+            </Button>
             <Modal className='fade bg-secondary ' size='lg' show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
                     <Modal.Title>Editar docente</Modal.Title>
