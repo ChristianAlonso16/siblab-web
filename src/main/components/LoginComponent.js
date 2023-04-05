@@ -11,11 +11,6 @@ import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { onFail } from "../utils/Alerts";
 
 export const LoginComponent = ( {onData} ) => {
-
-
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
-
     const [loading, setLoading] = useState(false);
     const [errors, setErrors] = useState("");
 const formik = useFormik({
