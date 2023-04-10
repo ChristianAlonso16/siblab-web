@@ -1,0 +1,39 @@
+.sidebar-menu-item {
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .sidebar-menu-item__button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+  }
+  
+  .sidebar-menu-item__list {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out;
+  }
+  
+  .sidebar-menu-item__list--open {
+    max-height: 300px;
+  }
+  
+  .sidebar-menu-item__element {
+    padding: 10px;
+    list-style: none;
+  }
+  
+  .sidebar-menu-item__icon {
+    float: right;
+    margin-right: 8px;
+    transition: transform 0.2s ease-out;
+  }
+  
+  .sidebar-menu-item__icon--open {
+    transform: rotate(180deg);
+  }
+  

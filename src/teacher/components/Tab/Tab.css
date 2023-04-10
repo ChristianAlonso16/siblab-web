@@ -1,0 +1,46 @@
+.tab-menu {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  .tab-menu-list {
+    display: flex;
+    list-style-type: none;
+    width: 100%;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .tab-menu-item {
+    flex: 1;
+    text-align: center;
+    padding: 12px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .tab-menu-item--active {
+    background-color: #ccc;
+  }
+  
+  .tab-menu-content {
+    flex: 1;
+    overflow: auto;
+    padding: 16px;
+    padding-right: -20px;
+    animation: fadein 0.5s;
+  }
+  
+  .tab-menu-panel {
+    display: none;
+  }
+  
+  .tab-menu-panel--active {
+    display: block;
+  }
+  
+  @keyframes fadein {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  

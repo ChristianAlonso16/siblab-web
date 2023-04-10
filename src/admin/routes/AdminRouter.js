@@ -10,6 +10,7 @@ import PageNotFound from '../../main/pages/PageNotFound';
 import GetTeachers from '../pages/GetTeachers';
 import GetQuaters from '../pages/GetQuaters';
 import GetGroups from '../pages/GetGroups';
+import Relations from '../pages/Relations';
  const AdminRouter = () => {
    return (
       <>
@@ -22,6 +23,7 @@ import GetGroups from '../pages/GetGroups';
             <Route path="docentes" element={<><SidebarAdmin /><GetTeachers/></>} />
             <Route path="grupos" element={<><SidebarAdmin /><GetGroups/></>} />
             <Route path="cuatrimestres" element={<><SidebarAdmin /><GetQuaters/></>} />
+            <Route path="relaciones" element={<><SidebarAdmin /><Relations/></>} />
             <Route path="/" element={<Navigate to={"/admin/listaReportes"} />} />
             <Route path="/*" element={<PageNotFound />} />
          </Routes>

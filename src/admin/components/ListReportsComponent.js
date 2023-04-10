@@ -3,13 +3,13 @@ import Button from "react-bootstrap/Button";
 import {BsEye} from "react-icons/bs";
 import React, {useContext, useEffect, useState} from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faAngleDown} from "@fortawesome/free-solid-svg-icons";
+import {faAngleDown, faChevronLeft} from "@fortawesome/free-solid-svg-icons";
 import {getAllStudents,getAllAttachments} from "../services/ListReportsService";
 import {NoRecordsFound} from "../../teacher/components/noRecordsFound/NoRecordsFoundComponent";
 import { ViewReportComponent } from "./ViewReportComponent";
 import "../assets/css/listReports.css"
 
-export const ListReportsComponent = () =>{
+export const ListReportsComponent = ({attachments = [], onAttach, isFilter = false}) =>{
 
     const opciones = {
         weekday: 'short',
@@ -20,7 +20,6 @@ export const ListReportsComponent = () =>{
 
     const [loading, setLoading] = useState(false);
     const [apiError, setApiError] = useState(false);
-    const [attachments, setAttachments] = useState([]);
     const [data, setData] = useState({});
     const [showModal, setShowModal] = useState(false);
     const [filasDesplegadas, setFilasDesplegadas] = useState([]);
@@ -51,22 +50,6 @@ export const ListReportsComponent = () =>{
         console.log(filasDesplegadas);
     }
 
-    const fillAttachments = async () =>{
-        setLoading(true);
-        const response = await getAllAttachments();
-        if (response === 'ERROR'){
-            setApiError(true);
-        }else {
-            setApiError(false);
-            response.sort((a,b)=> new Date(b.create_at).getTime() - new Date(a.create_at).getTime())
-            setAttachments(response);
-        }
-        setLoading(false);
-    }
-
-    useEffect(() =>{
-        fillAttachments()
-    },[]);
 
     const handleShow = async (attachment) =>{
         const users = await getAllStudents();
@@ -77,7 +60,16 @@ export const ListReportsComponent = () =>{
 
     return( loading ? <Loading/> : apiError ? <></> : attachments.length < 1 ?
             <div style={{marginLeft:'300px'}}><NoRecordsFound text ={'Aún no tienes historial'}/> </div>:
-            <div  className="container-sm py-3 mt-3" style={{ width: "50%", marginLeft: "470px" }}>
+            <div  className="container-sm py-3 mt-3" style={{ width: "60%", marginLeft: "400px" }}>
+                { isFilter &&
+                <div style={{padding:'5px', backgroundColor:'#0099FF', borderRadius:'5px', cursor:'pointer'}}
+                    onClick={()=> onAttach([])}>
+                    <a href="#" style={{color:'white', textDecoration:'none'}}>
+                        <FontAwesomeIcon icon={faChevronLeft} size="20px" color="white" style={{ marginRight:'10px', marginLeft:'10px'}}/>
+                        Volver
+                    </a>
+                </div>
+                }
                 <table className=" table table-hover table-secondary table-borderA  ">
                     <thead>
                     <tr>

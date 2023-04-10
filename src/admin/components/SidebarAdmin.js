@@ -1,13 +1,18 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import {FaClipboardList,FaUserAlt} from 'react-icons/fa';
 import {BsBuildings,} from 'react-icons/bs';
-import{MdOutlineInventory} from 'react-icons/md';
+import{MdLineWeight, MdOutlineInventory} from 'react-icons/md';
 import{SlLogout} from 'react-icons/sl';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../assets/css/sidebarAdmin.css';
 import iconoAdmin from '../assets/images/iconoAdmin.png'
 import { AuthContext } from '../../main/auth/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import './StyleSideBar.css'
+import { faChevronDown, faChevronLeft, faChevronUp } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import axios from 'axios';
+
 const SidebarAdmin = () => {
 const navigate=useNavigate();
 const onLogout=()=>{
@@ -17,6 +22,27 @@ const onLogout=()=>{
     })
 }
 const {user,logout} = useContext(AuthContext);
+const [show, setShow] = useState(false);
+
+    const handleShow = () =>{
+        setShow(prev => !prev);
+    }
+
+    useEffect(() =>{
+        checkSession();
+    },[]);
+
+    const checkSession = async() =>{
+        try{
+        
+            const url = `http://localhost:8080/api-siblab/session/`;
+            const response = await axios.get(url,{withCredentials:true});
+            
+        }catch(err){
+            console.log(err);
+            err.response.data === 'La sesión no está activa' && logout();
+        }
+    }
 
   return (
     <div className="container-fluid  h-100 rounded">
@@ -24,7 +50,7 @@ const {user,logout} = useContext(AuthContext);
         <a  className="d-flex aling-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
             <img className="imagen" src={iconoAdmin} alt="Admin"/>
             <div className = "vertical"></div>
-            <span className="fs-4 mb-5 ms-5 fw-normal">Administrador</span>
+            <span className="fs-4 mb-5 ms-3 fw-normal">Administrador</span>
         </a>
         <h4>{user.name}</h4>
         <hr/>
@@ -40,14 +66,6 @@ const {user,logout} = useContext(AuthContext);
             <hr/>
 
             <li>
-                <a href="/admin/laboratorios" className="nav-link text-white menuA">
-                   <BsBuildings className='sidenav-icon'/>
-                    Espacios
-                </a>
-            </li>
-        
-            <hr/>
-            <li>
                 <a href="/admin/docentes" className="nav-link text-white menuA">
                    <FaUserAlt className='sidenav-icon'/>
                      Docentes
@@ -62,21 +80,42 @@ const {user,logout} = useContext(AuthContext);
                 </a>
             </li>
             <hr/>
-            <li>
-                <a href="/admin/cuatrimestres" className="nav-link text-white menuA">
-                   <MdOutlineInventory className='sidenav-icon'/>
-                   Cuatrimestres
+            <li className='sidebar-menu-item'>
+                <a href="#" className="nav-link text-white menuA sidebar-menu-item__button" onClick={handleShow}>
+                <FontAwesomeIcon icon={show ? faChevronUp : faChevronLeft} className={`sidebar-menu-item__icon${show ? ' sidebar-menu-item__icon--open' : ''}`} />
+                   Asignaciones
                 </a>
-            </li>
-            <hr/>
+                <ul className={`sidebar-menu-item__list ${show ? 'sidebar-menu-item__list--open' : ''}`}>
 
-            <li>
-                <a href="/admin/grupos" className="nav-link text-white menuA">
-                   <MdOutlineInventory className='sidenav-icon'/>
-                   Grupos
-                </a>
+                    <li className='sidebar-menu-item__element'>
+                        <a href="/admin/cuatrimestres" className="nav-link text-white menuA">
+                            <MdOutlineInventory className='sidenav-icon'/>
+                            Cuatrimestres
+                        </a>
+                    </li>
+
+                    <li className='sidebar-menu-item__element'>
+                        <a href="/admin/laboratorios" className="nav-link text-white menuA">
+                            <BsBuildings className='sidenav-icon'/>
+                            Espacios
+                        </a>
+                    </li>
+
+                    <li className='sidebar-menu-item__element'>
+                        <a href="/admin/grupos" className="nav-link text-white menuA">
+                            <MdOutlineInventory className='sidenav-icon'/>
+                            Grupos
+                        </a>
+                    </li>
+
+                    <li className='sidebar-menu-item__element'>
+                        <a href="/admin/relaciones" className="nav-link text-white menuA">
+                            <MdLineWeight className='sidenav-icon'/>
+                            Distribuciones
+                        </a>
+                    </li>
+                </ul>
             </li>
-            <hr/>
 
 
         </ul>

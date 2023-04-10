@@ -65,10 +65,8 @@ export const HistoryComponent = () =>{
         }else {
             setApiError(false);
             let filter = [];
-            const historyTeacher = response.filter(obj => obj.report.length === 0)
-            console.log('filtro',historyTeacher)
-            historyTeacher.sort((a,b)=> new Date(b.create_at).getTime() - new Date(a.create_at).getTime())
-            for (let res of historyTeacher ){
+            response.sort((a,b)=> new Date(b.create_at).getTime() - new Date(a.create_at).getTime())
+            for (let res of response ){
                 if (res.email === user.username)
                     filter.push(res);
             }

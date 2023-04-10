@@ -40,7 +40,7 @@ const LaboratoriesComponent = () => {
 
     return (loading ? <Loading /> : apiError ? <></> : building.length < 1 ?
         <div style={{ marginLeft: '300px' }}><NoRecordsFound text={'Aún no tienes laboratorios'} /> </div> :
-        <div className="container py-5 mt-5  " style={{ width: "50%", marginLeft: "490px"}}>
+        <div className="container py-5 mt-5  " style={{ width: "55%", marginLeft: "450px"}}>
             <div className=" row g-3 d-flex" >
                 {building.map((build) => (
                     <div className="col-6 d-flex justify-content-end " key={build.id} >

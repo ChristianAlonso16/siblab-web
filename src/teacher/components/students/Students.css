@@ -1,0 +1,148 @@
+.contentList{
+    margin-left: 300px;
+    border-radius: 15px !important;
+}
+
+.table-border{
+    max-width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+}
+
+.fila {
+    border-bottom: 1px solid #ddd;
+    transition: background-color 0.2s;
+}
+
+.fila:hover {
+    background-color: #f5f5f5;
+}
+
+.btn-desplegar {
+    border: none;
+    background-color: transparent;
+    font-size: 16px;
+    color: #666;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.btn-desplegar.abierto {
+    transform: rotate(180deg);
+}
+
+.btn-desplegar:hover {
+    color: #000;
+}
+
+.contenido {
+    padding: 10px;
+    background-color: #f5f5f5;
+}
+
+.shadowCol td{
+    box-shadow: 0px 2px 0px rgba(0, 0, 0, 1) !important;
+}
+
+
+/* Modal */
+
+.background-modal1{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.modal1 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+
+    opacity: 0;
+    transform: translateY(-100%);
+    transition: opacity 0.3s, transform 0.3s;
+  }
+
+  .modal1.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* Animación de salida del modal */
+  .modal.hide1 {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  
+  .modal-overlay1 {
+    z-index: 999;
+  }
+  
+  .modal-content1 {
+    width: 800px;
+    background-color: #fff;
+    padding: 30px;
+    height: 500px;
+    
+  }
+  
+  /* Card Izquierda */
+  .left-card {
+    padding: 20px;
+    background-color: #f5f5f5;
+    display: flex;
+    height: 95%;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+    overflow: auto;
+  }
+  
+  .left-card h4 {
+    margin-top: 0;
+  }
+  
+  .options-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .options-list li {
+    cursor: pointer;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    width: 200px;
+    text-align: center;
+  }
+  
+  .options-list li:hover {
+    background-color: #d0d0d0;
+  }
+  
+  /* Card Derecha */
+  .right-card {
+    padding: 20px;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 95%;
+    margin: 20px;
+  }
+  
+  .right-card h2 {
+    margin-top: 0;
+  }
+
+  

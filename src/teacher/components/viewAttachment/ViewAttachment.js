@@ -85,7 +85,7 @@ export const ViewAttachment = ({ show, setShow, data }) => {
                                                         <FontAwesomeIcon icon={faArrowRightArrowLeft} />
                                                     </div>
                                                     <div className='col-10'>
-                                                        <p className='fw-light'> {data.users.find(us => us.id == rep.user.id).name} {data.users.find(us => us.id == rep.user.id).surname} </p>
+                                                        <p className='fw-light'> {rep.user.id && data.users.find(us => us.id == rep.user.id).name} {rep.user.id ? data.users.find(us => us.id == rep.user.id).surname : 'No reportado'} </p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -100,8 +100,8 @@ export const ViewAttachment = ({ show, setShow, data }) => {
                                     <div className='m-3' style={{ height: '100%', width: '100%' }}>
                                         <p className='fw-light'><strong>Dispositivo:</strong> {report.machine.name}</p>
                                         <p className='fw-light'><strong>Ubicacion:</strong> {report.laboratory.name} </p>
-                                        <p className='fw-light'><strong>Correo:</strong> {report.user.email}</p>
-                                        <p className='fw-light'><strong>Matrícula:</strong> {report.user.code}</p>
+                                        <p className='fw-light'><strong>Correo:</strong> {report.user && report.user.email}</p>
+                                        <p className='fw-light'><strong>Matrícula:</strong> {report.user && report.user.code}</p>
                                         <p className='fw-light'><strong>Registro:</strong> {new Date(report.time_Register).toLocaleString()}</p>
                                         <p className='fw-light'><strong>Salida:</strong> {hour(new Date(report.time_Finish))}</p>
                                         <p className='fw-light'><strong>Reporte:</strong> {report.info}</p>

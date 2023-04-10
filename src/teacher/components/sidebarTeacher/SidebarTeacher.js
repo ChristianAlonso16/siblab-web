@@ -1,10 +1,11 @@
-import React, {useContext} from "react";
+import React, {useContext, useEffect} from "react";
 import {FaClipboardList,FaUserAlt, FaHistory, FaPlus, FaPeopleCarry} from 'react-icons/fa';
 import{SlLogout} from 'react-icons/sl';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './SidebarTeacher.css'
 import {AuthContext} from "../../../main/auth/AuthContext";
 import image from './img.png'
+import axios from "axios";
 
 export const SidebarTeacher = () =>{
 
@@ -13,6 +14,23 @@ export const SidebarTeacher = () =>{
     const onLogout = () =>{
         logout();
     }
+
+    useEffect(() =>{
+        checkSession();
+    },[]);
+
+    const checkSession = async() =>{
+        try{
+        
+            const url = `http://localhost:8080/api-siblab/session/`;
+            const response = await axios.get(url,{withCredentials:true});
+            
+        }catch(err){
+            console.log(err);
+            err.response.data === 'La sesión no está activa' && logout();
+        }
+    }
+
     return (
         <div className="container-fluid  h-100 rounded">
             <div className="d-flex flex-column col-md-3 flex-shrink-0 p-3 text-white sidebar bgTeacher">

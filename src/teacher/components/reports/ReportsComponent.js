@@ -45,7 +45,8 @@ export const ReportsComponent = () =>{
         }else{
             let reportFilter = [];
             rRep.forEach(report =>{
-                if (report.user.classroom.id == group && report.status === 'Pending_student')
+                if(report.status === 'Pending_student')
+                if (report.user.classroom.id == group)
                     reportFilter.push(report)
             });
             setReports(reportFilter);
@@ -54,8 +55,8 @@ export const ReportsComponent = () =>{
             setClassroom(rGroup);
             setGroups(rGroups);
 
-            const lab = rLab.find(la => la.id === rRep[0].machine.laboratory.id);
-            const buil = rBuil.find(bu => bu.id === lab.building.id);
+            const lab = rRep.length > 0 ? rLab.find(la => la.id === rRep[0].machine.laboratory.id): null;
+            const buil = lab.building.id ? rBuil.find(bu => bu.id === lab.building.id) : null;
             setBuilding(buil);
             setLaboratory(lab);
         }

@@ -25,8 +25,8 @@ export const GroupsComponent = () => {
         } else {
             let filter = [];
             for (let i of response) {
-                if (i.period.user.id == user.id)
-                    filter.push(i);
+                if(i.period.length > 0)
+                    i.period.find(p => p.user.id === user.id) && filter.push(i);
             }
             setGroups(filter);
         }
@@ -53,24 +53,7 @@ export const GroupsComponent = () => {
     ];
     const [periodoSeleccionado, setPeriodoSeleccionado] = useState(null);
 
-    const datosFiltrados = periods.filter((registro) => {
-        const fechaInicio = new Date(registro.semester.semester_start).toLocaleDateString();
-        const fechaFin = new Date(registro.semester.semester_finish).toLocaleDateString();
-        if (!periodoSeleccionado) {
-            return true;
-        } else {
-            const periodo = periodos.find(
-                (p) => p.id === parseInt(periodoSeleccionado)
-            );
-            const inicioPeriodo = new Date(
-                `${periodo.inicio}-${new Date().getFullYear()}`
-            ).toLocaleDateString();
-            const finPeriodo = new Date(
-                `${periodo.fin}-${new Date().getFullYear()}`
-            ).toDateString();
-            return fechaInicio >= inicioPeriodo && fechaFin <= finPeriodo;
-        }
-    });
+   
     return (loading ? <Loading /> : apiError ? <></> : groups.length < 1 ?
         <div style={{ marginLeft: '300px' }}><NoRecordsFound text={'Aún no tienes grupos'} /> </div> :
         <div className="container py-3 mt-3  " style={{ paddingLeft: "350px" }}>
@@ -88,8 +71,8 @@ export const GroupsComponent = () => {
             </select>
             <div className='container mt-2'>
                 <div className='row'>
-                    {groups.map(group => (
-                        <div className='col-6 p-3'>
+                    {groups.map((group,ind) => (
+                        <div key={ind} className='col-6 p-3'>
                             <div className='card car p-3' onClick={() => navigate(`/docente/reports/${group.id}`)}>
                                 <div className='headerCar'>
                                     <div className='row'>
@@ -109,8 +92,8 @@ export const GroupsComponent = () => {
                                 <div className='card-body'>
                                     <div className='row'>
                                         <div className='col-4 texto'>
-                                            <p>Ingeniería</p>
-                                            <p>{group.period.semester.name + group.name}</p>
+                                            <p>Grupo</p>
+                                            <p>{group.grade + '° ' + group.name}</p>
                                         </div>
                                         <div className='col-8 texto'>
                                             <div className='verticalLin'>

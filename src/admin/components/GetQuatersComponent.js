@@ -50,7 +50,7 @@ const GetQuatersComponent = () => {
         </tr>
     ))
     return (
-        <div className="container-sm pt-5 " style={{ width: "50%", marginLeft: "470px" }}>
+        <div className="container-sm pt-5 " style={{ width: "60%", marginLeft: "400px" }}>
             <div className=" d-md-flex  justify-content-md-end">
                 <ModalRegisterQuater onQuater={sortData} />
             </div>

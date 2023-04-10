@@ -24,9 +24,7 @@ const ModalRegisterQuater = (props) => {
             fechaFin: "",
         },
         validationSchema: Yup.object().shape({
-            name: Yup.number()
-                .max(11, "El semestre maximo es 11")
-                .min(1, "Semestre minimo 1")
+            name: Yup.string()
                 .required("Nombre requerido"),
             fechaInicio: Yup.date().required('La fecha de inicio es requerida'),
             fechaFin: Yup.date()
@@ -100,7 +98,7 @@ const ModalRegisterQuater = (props) => {
                     <form className="row g-3 " onSubmit={formik.handleSubmit}>
                         <div className="col-md-6">
                             <label htmlFor="name" className="form-label">Cuatrimestre</label>
-                            <input value={formik.values.name} onChange={formik.handleChange} onBlur={formik.handleBlur} type="number" name='name' className="form-control" id="name" />
+                            <input value={formik.values.name} onChange={formik.handleChange} onBlur={formik.handleBlur} type="text" name='name' className="form-control" id="name" />
                             <div className="error-message">{formik.touched.name && formik.errors.name}</div>
 
                         </div>

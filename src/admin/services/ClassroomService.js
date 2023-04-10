@@ -6,15 +6,9 @@ export const RegisterC = async (form) => {
     
     console.log('Hola desde classservice', form);
     try {
-        const datacClassrom = {
-            name: form.values.name,
-            career: form.values.career,
-            grade: form.values.grade,
-            period: {id:form.idPeriod},
-        };
        const url = 'http://localhost:8080/api-siblab/classroom/';
      
-       const response = await apiUrl.post('http://localhost:8080/api-siblab/classroom/',datacClassrom);
+       const response = await apiUrl.post('http://localhost:8080/api-siblab/classroom/',form);
        onSuccess("Registrado correctamente")
        return response;
     } catch (error) {

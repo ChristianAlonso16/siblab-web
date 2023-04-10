@@ -1,48 +1,28 @@
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Button, Modal } from 'react-bootstrap';
 import { useFormik } from "formik";
 import * as Yup from 'yup';
 import Swal from 'sweetalert2';
-import apiUrl from '../../main/utils/AppUrl';
 import { RegisterC } from '../services/ClassroomService';
 import Loading from '../../main/components/Loading';
-const ModalRegisterGroup = (props) => {
+
+const ModalRegisterGroup = () => {
     const [loading, setLoading] = useState(false);
-    const [docentes, setDocente] = useState([]);
-    const [grades, setGrade] = useState([]) ;   
     const [show, setShow] = useState(false);
     const handleClose = () => {
         setShow(false);
     }
     const handleShow = () => setShow(true);
-    useEffect(() => {
-        const choseTeacher = async () => {
-            const response = await apiUrl.get('http://localhost:8080/api-siblab/user/');
-            const docenteFiltro = response.data.data;
-            const filteredTeacher = docenteFiltro.filter(objeto => objeto.role === 'Teacher');
-            setDocente(filteredTeacher);
-            console.log('filtro', filteredTeacher);
-        }
-        choseTeacher();
-
-    }, []);
-    useEffect(() => {
-        const choseGrade = async () => {
-            const response = await apiUrl.get('http://localhost:8080/api-siblab/semester/');
-            setGrade(response.data.data);
-        }
-        choseGrade();
-
-    }, []);
+    
     const formik = useFormik({
         initialValues: {
             name: "",
             students: 0,
             career: "",
             grade: "",
-            docente: ""
+            level: ""
         },
         validationSchema: Yup.object().shape({
             name: Yup.string()
@@ -58,54 +38,34 @@ const ModalRegisterGroup = (props) => {
                 .max(11, "El grado maximo es 11")
                 .min(1, "Grado minimo 1")
                 .required("Grado requerido"),
-            docente: Yup.string().required("Docente requerido")
+            level: Yup.string().matches("").required("Nivel académico requerido")
         }),
         onSubmit: async (values) => {
             console.log(values)
-            setLoading(true);
-            try {
-                const period = {
-                    semester:{ id:values.grade},
-                    user_id: { id: values.docente },
-                }
-                const response = await apiUrl.post('http://localhost:8080/api-siblab/period/', period)
-                const idPeriod = response.data.data.id;
-                console.log("Periodo",response)
-                show === false ? setShow(false) : await showConfirmationSwal({values,idPeriod});
-            } catch (error) {
-                setLoading(false);
-                console.log(error);
+            const {career, grade, level, name, students} = values;
+            const data ={
+                name,
+                total_students: students,
+                grade,
+                career: level + career
             }
-            setLoading(false);
-
+            await showConfirmationSwal(data);
         }
     })
-    const onGroup = async (values) => {
-        setLoading(true);
-        try {
-            setShow(false);
-           await RegisterC(values);
-           setTimeout(() => {
-            setLoading(false);
-            window.location.reload();
-        }, 3000);
-            props.sortData(values.values.career)
-        } catch (error) {
-            setShow(false);
-            setLoading(false);
-        }
-    }
     
-    const showConfirmationSwal = ({values,idPeriod}) => {
+    
+    const showConfirmationSwal = (values) => {
         Swal.fire({
             title: '¿Estás seguro?',
-            text: '¿Quieres registrar el nuevo grupo?',
+            text: '¿Quieres registrar este grupo?',
             icon: 'warning',
             showCancelButton: true,
             confirmButtonText: 'Sí',
             cancelButtonText: 'No',
             preConfirm: async () => {
-                await onGroup({values,idPeriod});
+                setLoading(true);
+                await RegisterC(values);
+                setLoading(false);
             }
         });
     }
@@ -139,35 +99,46 @@ const ModalRegisterGroup = (props) => {
                             <label htmlFor="selectGrado" className="form-label">Asignar grado</label>
                             <select className="form-select" aria-label="Default select example " onBlur={formik.handleBlur} name='grade' id="selectGrado" value={formik.values.grade} onChange={formik.handleChange}>
                                 <option value>Asignar grado...</option>
-                                {grades.map(grade => (
-                                    <option key={grade.id} value={grade.id}>
-                                        {grade.name}
-                                    </option>
-                                ))}
+                                <option value={1}>1°Cuatrimestre</option>
+                                <option value={2}>2°Cuatrimestre</option>
+                                <option value={3}>3°Cuatrimestre</option>
+                                <option value={4}>4°Cuatrimestre</option>
+                                <option value={5}>5°Cuatrimestre</option>
+                                <option value={6}>6°Cuatrimestre</option>
+                                <option value={7}>7°Cuatrimestre</option>
+                                <option value={8}>8°Cuatrimestre</option>
+                                <option value={9}>9°Cuatrimestre</option>
+                                <option value={10}>10°Cuatrimestre</option>
+                                <option value={11}>11°Cuatrimestre</option>
                             </select>
+                            <div className="error-message">{formik.touched.grade && formik.errors.grade}</div>
                         </div>
 
-
+                        <div className="col-md-6">
+                            <label htmlFor="selectPeriod" className="form-label">Nivel académico</label>
+                            <select className="form-select" aria-label="Default select example " onBlur={formik.handleBlur} name='level' id="selectPeriod" value={formik.values.level} onChange={formik.handleChange}>
+                                <option value={""}>Asignar nivel académico...</option>
+                                <option value={'Tsu. '}>Técnico superior universitario</option>
+                                <option value={'Ing. '}>Ingeniería</option>
+                                <option value={'Lic. '}>Licenciatura</option>
+                                
+                            </select>
+                            <div className="error-message">{formik.touched.level && formik.errors.level}</div>
+                        </div>
                         <div className="col-md-6">
                             <label htmlFor="selectGrade" className="form-label">Asignar Carrera</label>
                             <select className="form-select" value={formik.values.career} onBlur={formik.handleBlur} name="career" aria-label="Default select example " id="selectGrade" onChange={formik.handleChange}>
                                 <option value>Asignar carrera...</option>
-                                <option value="Tsu Desarrollo de Sotware">Tsu Desarrollo de Sotware</option>
-                                <option value="Lic Administracion">Lic Administracion </option>
-                                <option value="Tsu Redes">Tsu Redes</option>
+                                <option value="Desarrollo de Sotware">Desarrollo de Sotware</option>
+                                <option value="Diseño digital">Diseño digital </option>
+                                <option value="Redes">Redes</option>
+                                <option value="Mecatrónica">Mecatrónica</option>
+                                <option value="Contaduría">Contaduría</option>
+                                <option value="Administración">Administración</option>
                             </select>
+                            <div className="error-message">{formik.touched.career && formik.errors.career}</div>
                         </div>
-                        <div className="col-md-6">
-                            <label htmlFor="selectPeriod" className="form-label">Asignar docente</label>
-                            <select className="form-select" aria-label="Default select example " onBlur={formik.handleBlur} name='docente' id="selectPeriod" value={formik.values.docente} onChange={formik.handleChange}>
-                                <option value>Asignar docente...</option>
-                                {docentes.map(docente => (
-                                    <option key={docente.id} value={docente.id}>
-                                        {docente.name} {""} {docente.surname}
-                                    </option>
-                                ))}
-                            </select>
-                        </div>
+                        
 
                         <Modal.Footer>
                         <Button variant="secondary" type='submit' onClick={handleClose}>

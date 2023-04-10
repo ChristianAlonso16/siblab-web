@@ -10,8 +10,7 @@ import { onFail, onSuccess } from '../../main/utils/Alerts';
 import Loading from '../../main/components/Loading';
 import { AiFillEdit } from 'react-icons/ai';
 
-const ModalEditTeacher = (props) => {
-    const { docente } = props;
+const ModalEditTeacher = ({docente}) => {
     const [loading, setLoading] = useState(false);
 
     const [show, setShow] = useState(false);

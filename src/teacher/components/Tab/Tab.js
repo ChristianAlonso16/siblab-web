@@ -1,35 +1,56 @@
 import React, { useState } from 'react'
 import { HistoryComponent } from '../history/HistoryComponent';
-import {HistoryGroups} from '../historyGroup/HistoryGroups';
-import Nav from 'react-bootstrap/Nav';
+import StudentsComponent from '../students/StudentsComponent';
 
+const Tab = () => {
+    
 
-const Historial = () => {
-    const [historialType, setHistorialType] = useState('personal');
-    const Tab = () => {
-        const handleHistorialTypeChange = (type) => {
-            setHistorialType(type);
-        };
-        return (
-            <div className='d-flex justify-content-center mt-3'>
-                <Nav variant="pills"  defaultActiveKey="personal">
-                    <Nav.Item>
-                        <Nav.Link eventKey="personal" onClick={() => handleHistorialTypeChange('personal')}>Mi historial</Nav.Link>
-                    </Nav.Item>
-                    <Nav.Item>
-                        <Nav.Link eventKey="grupos" onClick={() => handleHistorialTypeChange('grupos')}> Mis alumnos
-                        </Nav.Link>
-                    </Nav.Item>
-                </Nav>
+    const tabs = [
+        {
+            name: 'default',
+            label: 'historial',
+            content: (<HistoryComponent/>)
+        },
+        {
+            name: 'name',
+            label: 'Estudiantes',
+            content: (<StudentsComponent/>)
+        }
+    ];
+
+    const [activeTab, setActiveTab] = useState(tabs[0].name);
+
+    const handleClick = (tabName) => {
+        setActiveTab(tabName);
+    };
+        
+    return (
+            <div className="tab-menu">
+                <div style={{marginLeft:'300px', marginTop:'20px'}}>
+                    <ul className="tab-menu-list">
+                        {tabs.map((tab) => (
+                        <li
+                            key={tab.name}
+                            className={`tab-menu-item${tab.name === activeTab ? ' tab-menu-item--active' : ''}`}
+                            onClick={() => handleClick(tab.name)}
+                        >
+                            {tab.label}
+                        </li>
+                        ))}
+                    </ul>
+                </div>
+                <div className="tab-menu-content">
+                    {tabs.map((tab) => (
+                    <div
+                        key={tab.name}
+                        className={`tab-menu-panel${tab.name === activeTab ? ' tab-menu-panel--active' : ''}`}
+                    >
+                        {tab.content}
+                    </div>
+                    ))}
+                </div>
             </div>
         );
-    };
-    return (
-        <div>
-            <Tab />
-            {historialType === 'personal' ? <HistoryComponent /> : <HistoryGroups />}
-        </div>
-    );
 };
-
-export default Historial
+    
+export default Tab

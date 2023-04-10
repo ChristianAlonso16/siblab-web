@@ -5,7 +5,7 @@ import Example from '../components/RegisterComputer'
 import Loading from '../../main/components/Loading';
 import { ChangeStatusMachine, getInventory } from '../services/InventoryServices';
 import { NoRecordsFound } from '../../teacher/components/noRecordsFound/NoRecordsFoundComponent';
-import { AiOutlineDelete } from 'react-icons/ai';
+import { AiOutlineDelete, AiOutlinePlusCircle } from 'react-icons/ai';
 import ModalEditComputer from './ModalEditComputer';
 import { Button } from 'react-bootstrap';
 import Swal from 'sweetalert2';
@@ -67,16 +67,16 @@ const InventoryComponent = () => {
     const filas = machine.map((mach) => (
         <tr key={mach.id}  >
             <td><img src={`${url}/${mach.id}`}  style={{ height: "80px", width: "auto" }} className="m-3" alt="Computadora" /></td>
-            <td>{mach.name}</td>
-            <td>{mach.hard_disk}</td>
-            <td>{mach.brand}</td>
-            <td>{mach.cpu}</td>
-            <td>{mach.status === true ? 'Activa' : 'Inactiva'}</td>
-            <td>
+            <td style={{verticalAlign:'middle'}}>{mach.name}</td>
+            <td style={{verticalAlign:'middle'}}>{mach.hard_disk}</td>
+            <td style={{verticalAlign:'middle'}}>{mach.brand}</td>
+            <td style={{verticalAlign:'middle'}}>{mach.cpu}</td>
+            <td style={{verticalAlign:'middle'}}>{mach.status === true ? 'Activa' : 'Inactiva'}</td>
+            <td style={{verticalAlign:'middle'}}>
                 <div>
                     <ModalEditComputer computer={mach}/>
-                    <Button variant="danger" size="sm" onClick={() => showConfirmationSwal(mach)}>
-                        <AiOutlineDelete />
+                    <Button variant={mach.status ? "danger" : "success"} className='ms-2' size="sm" onClick={() => showConfirmationSwal(mach)}>
+                        {mach.status ? <AiOutlineDelete /> : <AiOutlinePlusCircle/>}
                     </Button>
                 </div>
 
@@ -88,7 +88,7 @@ const InventoryComponent = () => {
     return (
     //     loading ? <Loading /> : apiError ? <></> : machine.length < 1 ?
     // <div style={{marginLeft:'300px'}}><NoRecordsFound text ={'Aún no tienes inventario'}/> </div>:
-        <div className="container-sm " style={{ width: "50%", marginLeft: "470px" }}>
+        <div className="container-sm " style={{ width: "60%", marginLeft: "400px" }}>
             <div className=" d-md-flex  justify-content-md-end">
                 <Example onMachine={findMachine} />
             </div>

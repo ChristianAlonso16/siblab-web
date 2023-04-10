@@ -42,12 +42,12 @@ const AulasComputerComponent = ({ data }) => {
     const filas = computers.map((computer) => (
         <tr key={computer.id}  >
             <td><img src={`${url}/${computer.id}`}style={{ height: "80px", width: "auto" }}  alt="Computadora" /></td>
-            <td>{computer.name}</td>
-            <td>{computer.hard_disk}</td>
-            <td>{computer.brand}</td>
-            <td>{computer.cpu}</td>
-            <td>{computer.status === true ? 'Activa' : 'Inactiva'}</td>
-            <td>
+            <td style={{verticalAlign:'middle'}}>{computer.name}</td>
+            <td style={{verticalAlign:'middle'}}>{computer.hard_disk}</td>
+            <td style={{verticalAlign:'middle'}}>{computer.brand}</td>
+            <td style={{verticalAlign:'middle'}}>{computer.cpu}</td>
+            <td style={{verticalAlign:'middle'}}>{computer.status === true ? 'Activa' : 'Inactiva'}</td>
+            <td style={{verticalAlign:'middle'}}>
                 <Button className='btn-sm btn' style={{backgroundColor:" rgb(21 47 71)"}} onClick={() => handleShow(computer)}>
                     Generar codigo QR
                 </Button>
@@ -60,7 +60,7 @@ const AulasComputerComponent = ({ data }) => {
     return (
         loading ? <Loading /> : computers.length < 1 ? <div style={{marginLeft:'300px'}}>
         <NoRecordsFound text ={'Aún no tiene computadoras asignadas este laboratorio'}/> </div>:
-        <div className="container-sm pt-5 mt-5" style={{ width: "50%", marginLeft: "470px" }}>
+        <div className="container-sm pt-5 mt-5" style={{ width: "60%", marginLeft: "400px" }}>
             <table className=" table border shadow table-hover table-striped text-center">
                 <thead className="text-white fw-light" style={{ backgroundColor: "green" }}>
                     <tr>

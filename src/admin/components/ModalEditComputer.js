@@ -30,7 +30,7 @@ const ModalEditComputer = (props) => {
             hard_disk: computer?.hard_disk || "",
             cpu: computer?.cpu || "",
             specific_features: computer?.specific_features || "",
-            aula: computer?.laboratory.name || ""
+            aula: computer?.laboratory.id || ""
 
         });
         const choseAula = async () => {
