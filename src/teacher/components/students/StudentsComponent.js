@@ -80,20 +80,19 @@ const StudentsComponent = () =>{
     },[]);
     
     return(
-    groups.length < 1 ?
-    <div style={{marginLeft:'300px'}}><NoRecordsFound text ={'Aún no tienes grupos'}/> </div>:
     <div className="ps-5 pe-3 pt-3 contentList">
         <select
                 className="form-control"
                 onChange={(e) => fillGroups(e.target.value)}>
-
-                <option value={""}>Todos los grupos</option>
                 {semesters.map((semester) => (
                     <option selected={semester.id === currentSemester.id} key={semester.id} value={semester.id}>
                         {semester.name}
                     </option>
                 ))}
         </select>
+        { groups.length < 1 ?
+            <NoRecordsFound text ={'Aún no tienes grupos'}/>:
+
         <table className=" table table-hover table-secondary table-border  ">
             <thead>
             <tr>
@@ -138,6 +137,7 @@ const StudentsComponent = () =>{
             ))}
             </tbody>
         </table>
+        }
     </div>
     );
 }
@@ -148,6 +148,7 @@ const Reports = ({student}) => {
     const [reports, setReports] = useState([]);
     const [apiError, setApiError] = useState(false);
     const [loading, setLoading] = useState(false);
+    const {user} = useContext(AuthContext);
 
   const handleOpenModal = () => {
     setModalIsOpen(true);
@@ -169,7 +170,8 @@ const Reports = ({student}) => {
         setApiError(true);
     }else{
         setApiError(false);
-        setReports(response);
+        const filter = response.filter(report => report.id_teacher == user.id)
+        setReports(filter);
     }
     console.log(response)
     setLoading(false);
@@ -202,8 +204,9 @@ const Reports = ({student}) => {
             { loading ? 
                 <><FontAwesomeIcon style={{position:'absolute', top:'50%', right:'50%'}} size="3x" icon={faSpinner} spin/></> :
             <div className="row" style={{height:'350px'}}>
+                <h4>Reportes: {reports.length}</h4>
                 <div className="left-card col-5">
-                    <h4>Reportes: {reports.length}</h4>
+                    
                     <ul className="options-list">
                         { reports.map((report,ind) => (
                             <li key={ind} onClick={() => handleOptionClick(report)}>
@@ -214,7 +217,7 @@ const Reports = ({student}) => {
                 </div>
                 <div className="right-card col-5">
                     {selectedOption ? 
-                    <div className='m-3' style={{ height: '100%', width: '100%' }}>
+                    <div className='m-3' style={{ height: '100%', width: '100%', overflow:'auto' }}>
                         <p className='fw-light'><strong>Dispositivo:</strong> {selectedOption.machine.name}</p>
                         <p className='fw-light'><strong>Ubicacion:</strong> {selectedOption.machine.laboratory.name} </p>
                         <p className='fw-light'><strong>Correo:</strong> {selectedOption.user.email}</p>

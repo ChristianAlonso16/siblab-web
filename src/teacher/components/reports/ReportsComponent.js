@@ -55,8 +55,8 @@ export const ReportsComponent = () =>{
             setClassroom(rGroup);
             setGroups(rGroups);
 
-            const lab = rRep.length > 0 ? rLab.find(la => la.id === rRep[0].machine.laboratory.id): null;
-            const buil = lab.building.id ? rBuil.find(bu => bu.id === lab.building.id) : null;
+            const lab = reportFilter.length > 0 ? rLab.find(la => la.id === reportFilter[0].machine.laboratory.id): null;
+            const buil = lab ? rBuil.find(bu => bu.id === lab.building.id) : null;
             setBuilding(buil);
             setLaboratory(lab);
         }
@@ -91,7 +91,7 @@ export const ReportsComponent = () =>{
                     <div className='row'>
                         {reports.map(report => (
                             <div key={report.id} className='col-6 p-4'>
-                                <div className='card cart p-3' onClick={()=>handleShow(report)}>
+                                <div style={report.defect ? {borderWidth:'10px', borderStyle:'solid', borderImage: 'linear-gradient( #EF5350, transparent) 1'} : {}} className='card cart p-3' onClick={()=>handleShow(report)}>
                                     <div className='card-body'>
                                         <div className='row'>
                                             <div className='col-4 text'>
@@ -99,16 +99,16 @@ export const ReportsComponent = () =>{
                                                      xmlns="http://www.w3.org/2000/svg">
                                                     <path fill-rule="evenodd" clip-rule="evenodd"
                                                           d="M71.1953 82.5C73.4474 82.5 74.9488 80.625 74.9488 78.375C74.9488 76.125 73.4474 74.625 71.1953 74.625C68.9431 74.625 67.0663 76.5 67.0663 78.375C67.4417 81 68.9431 82.5 71.1953 82.5ZM14.8915 0H126.373C126.373 28.875 126.373 57.75 126.373 86.625C100.098 86.625 73.8228 86.625 47.5477 86.625V70.875H118.49V7.875H14.8915V0ZM31.7827 43.5H8.13509V35.625H31.7827V43.5ZM12.264 94.5C10.0119 94.5 8.13509 93 8.13509 90.375C8.13509 88.125 10.0119 86.625 12.264 86.625C14.5162 86.625 16.393 88.5 16.393 90.375C16.393 93 14.5162 94.5 12.264 94.5ZM12.264 83.625C11.138 83.625 9.63653 82.5 9.63653 81C9.63653 79.875 10.7626 78.75 12.264 78.75C13.7655 78.75 14.5162 79.875 14.5162 81C14.5162 82.5 13.3901 83.625 12.264 83.625ZM31.7827 31.5H8.13509V23.625H31.7827V31.5ZM0.62793 15.75H40.0405V117.75H0.62793V15.75ZM51.6766 102.375H59.5592V94.5H83.2067V102.375H91.0892V110.25H83.2067H59.5592H51.6766V102.375Z"
-                                                          fill="black"/>
+                                                          fill={"black"}/>
                                                 </svg>
                                             </div>
                                             <div className='col-8 text'>
                                                 <div className='verticalLine'>
                                                     <p><strong> Maquina: </strong> {report.machine.name}</p>
                                                     <p>
-                                                        <strong> Espacio: </strong> {laboratories.find(lab => lab.id == report.machine.laboratory.id).name}/{buildings.find(buil => report.machine.laboratory.id === buil.laboratories.find(lab => report.machine.laboratory.id === lab.id).id).name}
+                                                        <strong> Espacio: </strong> {laboratories.find(lab => lab.id == report.machine.laboratory.id).name}
                                                     </p>
-                                                    <p>{report.user.name}</p>
+                                                    <p>{report.user.name} {report.defect && <p style={{color:'red'}}>Se encontraron daños</p>}</p>
                                                     <p>{new Date(report.time_Register).toLocaleString()}</p>
                                                 </div>
                                             </div>

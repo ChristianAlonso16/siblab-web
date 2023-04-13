@@ -8,6 +8,7 @@ import Card from 'react-bootstrap/Card';
 import docencia4 from "../assets/images/docencia4.jpg"
 import "../assets/css/laboratories.css"
 import { NoRecordsFound } from '../../teacher/components/noRecordsFound/NoRecordsFoundComponent';
+import ModalRegisterBuilding from './ModalRegisterBuilding';
 const LaboratoriesComponent = () => {
     const [loading, setLoading] = useState(false);
     const [apiError, setApiError] = useState(false);
@@ -41,7 +42,10 @@ const LaboratoriesComponent = () => {
     return (loading ? <Loading /> : apiError ? <></> : building.length < 1 ?
         <div style={{ marginLeft: '300px' }}><NoRecordsFound text={'Aún no tienes laboratorios'} /> </div> :
         <div className="container py-5 mt-5  " style={{ width: "55%", marginLeft: "450px"}}>
-            <div className=" row g-3 d-flex" >
+            
+            <ModalRegisterBuilding/>
+            
+            <div className=" mt-5 row g-3 d-flex" >
                 {building.map((build) => (
                     <div className="col-6 d-flex justify-content-end " key={build.id} >
                         <div className="col">

@@ -27,6 +27,10 @@ function FilterList() {
         setLoading(false);
     }
 
+    const onReload = () =>{
+        fillAttachments();
+    }
+
     useEffect(()=>{
         fillAttachments();
     },[])
@@ -35,17 +39,17 @@ function FilterList() {
         {
             name: 'default',
             label: 'historial',
-            content: (<ListReportsComponent attachments={attachments}/>)
+            content: (<ListReportsComponent onReload={onReload} attachments={attachments}/>)
         },
         {
             name: 'name',
             label: 'Profesores',
-            content: (<Teachers attachments={attachments}/>)
+            content: (<Teachers onReload={onReload} attachments={attachments}/>)
         },
         {
             name: 'group',
             label: 'Grupos',
-            content: (<Groups attachments={attachments}/>)
+            content: (<Groups onReload={onReload} attachments={attachments}/>)
         }
     ]
 
@@ -89,7 +93,7 @@ function FilterList() {
   );
 }
 
-const Groups = ({attachments}) =>{
+const Groups = ({attachments, onReload}) =>{
     const [groups, setGroups] = useState([]);
     const [loading, setLoading] = useState(false);
     const [apiError, setApiError] = useState(false);
@@ -98,6 +102,11 @@ const Groups = ({attachments}) =>{
     useEffect(()=>{
         fillGroups();
     },[]);
+
+    const reload = () =>{
+        onReload();
+        fillGroups();
+    }
 
     const fillGroups = async() =>{
         setLoading(true);
@@ -166,10 +175,10 @@ const Groups = ({attachments}) =>{
                 </div>
             </div>
         </>
-    ) : <ListReportsComponent attachments={attach} onAttach ={setAttach} isFilter={true}/>
+    ) : <ListReportsComponent onReload={reload} attachments={attach} onAttach ={setAttach} isFilter={true}/>
 }
 
-const Teachers = ({attachments}) =>{
+const Teachers = ({attachments, onReload}) =>{
     const [teachers, setTeachers] = useState([]);
     const [loading, setLoading] = useState(false);
     const [apiError, setApiError] = useState(false);
@@ -178,6 +187,11 @@ const Teachers = ({attachments}) =>{
     useEffect(()=>{
         fillTeachers();
     },[]);
+
+    const reload = () =>{
+        onReload();
+        fillTeachers();
+    }
 
     const fillTeachers = async() =>{
         setLoading(true);
@@ -237,7 +251,7 @@ const Teachers = ({attachments}) =>{
                 </div>
             </div>
         </>
-    ) : <ListReportsComponent attachments={attach} onAttach ={setAttach} isFilter={true}/>
+    ) : <ListReportsComponent onReload={reload} attachments={attach} onAttach ={setAttach} isFilter={true}/>
 }
 
 const onIncomplete = () =>{

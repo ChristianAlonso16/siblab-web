@@ -38,7 +38,7 @@ export const CreateReportComponent = ({data, onShow, laboratories, buildings, re
     }
 
     useEffect(()=>{
-        console.log(groups);
+        console.log(data.laboratory);
         data && onChangeMachines(id_laboratory);
     },[])
     const formik = useFormik({
@@ -75,20 +75,26 @@ export const CreateReportComponent = ({data, onShow, laboratories, buildings, re
             const attach = await createNewAttach({...values, status:'Review_teacher', email:user.username});
             if (attach === 'ERROR') throw 'ERROR (create new attachment)'
             console.log(attach);
-            for (const fail of destroys) {
-                const result = reports.find(report => report.machine.id == fail);
-                if (result) { // Reports for students
-                    const resultFailReportStudent = await AuthorizeFailReport(result.id,{status:'Review_teacher', defect:true, attachment:{id:attach.id}});
-                    if (resultFailReportStudent === 'ERROR') throw 'ERROR (change status of reports of students)'
-                    console.log("AuthorizeFailReport 1")
-                } else { // New reports for teacher
+            let documentedReports = [];
+            for (let fail of destroys) {
+                for(let rep of reports){
+                    if (rep.machine.id == fail) { // Reports for students
+                        const resultFailReportStudent = await AuthorizeFailReport(rep.id,{status:'Review_teacher', defect:true, attachment:{id:attach.id}});
+                        documentedReports.push(rep.machine.id+"");
+                        if (resultFailReportStudent === 'ERROR') throw 'ERROR (change status of reports of students)'
+                        console.log("AuthorizeFailReport 1")
+                    }
+                }
+            }
+            for (let fail of destroys) {
+                if(!documentedReports.includes(fail)){ // New reports for teacher
                     const resultFailOther = await completeOtherReports(fail, {attachment: {id: attach.id}})
                     if (resultFailOther === 'ERROR') throw 'ERROR (create new reports fail for teacher)'
                 }
             }
-            for (const report of reports) {
-                if(!destroys.includes(report.machine.id+"")){
-                    const resultDefaultReport = await AuthorizeFailReport(report.id, {status:'Review_teacher', defect:false, attachment:{id:attach.id}});
+            for (let rep of reports) {
+                if(!destroys.includes(rep.machine.id+"")){
+                    const resultDefaultReport = await AuthorizeFailReport(rep.id, {status:'Review_teacher', defect:false, attachment:{id:attach.id}});
                     if(resultDefaultReport === 'ERROR') throw 'ERROR (change status of default reports)'
                     console.log("AuthorizeFailReport 2")
                 }

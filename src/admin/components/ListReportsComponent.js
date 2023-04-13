@@ -9,7 +9,7 @@ import {NoRecordsFound} from "../../teacher/components/noRecordsFound/NoRecordsF
 import { ViewReportComponent } from "./ViewReportComponent";
 import "../assets/css/listReports.css"
 
-export const ListReportsComponent = ({attachments = [], onAttach, isFilter = false}) =>{
+export const ListReportsComponent = ({attachments = [], onAttach, isFilter = false, onReload}) =>{
 
     const opciones = {
         weekday: 'short',
@@ -29,7 +29,7 @@ export const ListReportsComponent = ({attachments = [], onAttach, isFilter = fal
         let next = true;
         arr.forEach((attach, index) => {
             if (index >= ind) {
-                if (arr[index + 1] && (new Date(arr[index].create_at).getDay() !== new Date( arr[index + 1].create_at).getDay())) {
+                if (arr[index + 1] && (new Date(arr[index].create_at).getDate() !== new Date( arr[index + 1].create_at).getDate())) {
                     next && setTimeout( ()=> line.forEach(i => handleClick(i)),10);
                     next && line.push(index);
                     next = false;
@@ -114,7 +114,7 @@ export const ListReportsComponent = ({attachments = [], onAttach, isFilter = fal
                                     </td>
                                 </tr>
                             }
-                            {arr[index + 1] && (new Date(arr[index].create_at).getDay() !== new Date(arr[index + 1].create_at).getDay()) &&
+                            {arr[index + 1] && (new Date(arr[index].create_at).getDate() !== new Date(arr[index + 1].create_at).getDate()) &&
                                 <tr className='shadowCol'>
                                     <td>
 
@@ -136,7 +136,7 @@ export const ListReportsComponent = ({attachments = [], onAttach, isFilter = fal
                     </tbody>
                 </table>
                 {!showModal ? <></> :
-                <ViewReportComponent show={showModal} setShow={setShowModal} data={data}/>
+                <ViewReportComponent onReload={onReload} show={showModal} setShow={setShowModal} data={data}/>
                 }
             </div>
     )

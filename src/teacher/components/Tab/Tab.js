@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { HistoryComponent } from '../history/HistoryComponent';
 import StudentsComponent from '../students/StudentsComponent';
+import './Tab.css'
 
 const Tab = () => {
     
@@ -32,8 +33,7 @@ const Tab = () => {
                         <li
                             key={tab.name}
                             className={`tab-menu-item${tab.name === activeTab ? ' tab-menu-item--active' : ''}`}
-                            onClick={() => handleClick(tab.name)}
-                        >
+                            onClick={() => handleClick(tab.name)}>
                             {tab.label}
                         </li>
                         ))}
@@ -43,8 +43,7 @@ const Tab = () => {
                     {tabs.map((tab) => (
                     <div
                         key={tab.name}
-                        className={`tab-menu-panel${tab.name === activeTab ? ' tab-menu-panel--active' : ''}`}
-                    >
+                        className={`tab-menu-panel${tab.name === activeTab ? ' tab-menu-panel--active' : ''}`}>
                         {tab.content}
                     </div>
                     ))}

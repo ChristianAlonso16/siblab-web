@@ -76,7 +76,7 @@ export const ViewAttachment = ({ show, setShow, data }) => {
                                     </> :
                                     <>
                                         {data.report.map((rep, index) => (
-                                            <div key={index} id='button' className='report' onClick={() => {
+                                            <div key={index} style={rep.defect ? {cursor:'pointer', backgroundColor:'red', color:'white'} : {cursor:'pointer'}} id='button' className='report' onClick={() => {
                                                 showReport(rep.id);
                                                 document.getElementById('button').classList.toggle('report-active');
                                             }}>
@@ -85,7 +85,7 @@ export const ViewAttachment = ({ show, setShow, data }) => {
                                                         <FontAwesomeIcon icon={faArrowRightArrowLeft} />
                                                     </div>
                                                     <div className='col-10'>
-                                                        <p className='fw-light'> {rep.user.id && data.users.find(us => us.id == rep.user.id).name} {rep.user.id ? data.users.find(us => us.id == rep.user.id).surname : 'No reportado'} </p>
+                                                        <p className={!rep.defect && 'fw-light'}> {rep.user.id && data.users.find(us => us.id == rep.user.id).name} {rep.user.id ? data.users.find(us => us.id == rep.user.id).surname : 'No reportado'} </p>
                                                     </div>
                                                 </div>
                                             </div>

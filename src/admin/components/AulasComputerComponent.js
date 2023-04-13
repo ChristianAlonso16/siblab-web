@@ -48,7 +48,7 @@ const AulasComputerComponent = ({ data }) => {
             <td style={{verticalAlign:'middle'}}>{computer.cpu}</td>
             <td style={{verticalAlign:'middle'}}>{computer.status === true ? 'Activa' : 'Inactiva'}</td>
             <td style={{verticalAlign:'middle'}}>
-                <Button className='btn-sm btn' style={{backgroundColor:" rgb(21 47 71)"}} onClick={() => handleShow(computer)}>
+                <Button className='btn-sm btn' disabled={!computer.status} style={{backgroundColor:" rgb(21 47 71)"}} onClick={() => handleShow(computer)}>
                     Generar codigo QR
                 </Button>
                

@@ -35,7 +35,7 @@ export const HistoryComponent = () =>{
         let next = true;
         arr.forEach((attach, index) => {
             if (index >= ind) {
-                if (arr[index + 1] && (new Date(arr[index].create_at).getDay() !== new Date( arr[index + 1].create_at).getDay())) {
+                if (arr[index + 1] && (new Date(arr[index].create_at).getDate() !== new Date( arr[index + 1].create_at).getDate())) {
                     next && setTimeout( ()=> line.forEach(i => handleClick(i)),10);
                     next && line.push(index);
                     next = false;
@@ -133,7 +133,7 @@ export const HistoryComponent = () =>{
                                     </td>
                                 </tr>
                             }
-                            {arr[index + 1] && (new Date(arr[index].create_at).getDay() !== new Date(arr[index + 1].create_at).getDay()) &&
+                            {arr[index + 1] && (new Date(arr[index].create_at).getDate() !== new Date(arr[index + 1].create_at).getDate()) &&
                                 <tr className='shadowCol'>
                                     <td>
 
