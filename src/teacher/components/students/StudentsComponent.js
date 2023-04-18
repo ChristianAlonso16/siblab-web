@@ -25,7 +25,7 @@ const StudentsComponent = () =>{
 
     const fillSemesters = async () => {
         try {
-            const response = await axios.get("http://localhost:8080/api-siblab/semester/",{withCredentials:true});
+            const response = await axios.get("http://3.88.177.163:8080/api-siblab/semester/",{withCredentials:true});
             const data = response.data.data;
             setSemesters(data);
 

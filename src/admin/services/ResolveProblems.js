@@ -9,7 +9,7 @@ export const ResolveProvelms = async(id, attachId) =>{
             attachment:{id: attachId}
         }
         console.log(data, '-----------------');
-        const url = `http://localhost:8080/api-siblab/report/${id}`;
+        const url = `http://3.88.177.163:8080/api-siblab/report/${id}`;
         const response = await axios.put(url,data,{
             withCredentials:true,
         })
@@ -27,12 +27,12 @@ export const DisableMachine = async(id, attachId, machineId) =>{
             defect: true,
             attachment:{id: attachId}
         }
-        const url = `http://localhost:8080/api-siblab/report/${id}`;
+        const url = `http://3.88.177.163:8080/api-siblab/report/${id}`;
         const response = await axios.put(url,data,{
             withCredentials:true,
         });
 
-        const url2 = `http://localhost:8080/api-siblab/machine/${machineId}`;
+        const url2 = `http://3.88.177.163:8080/api-siblab/machine/${machineId}`;
         const responseComputer = await axios.delete(url2,{
             withCredentials:true,
         });

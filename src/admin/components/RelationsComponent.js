@@ -35,7 +35,7 @@ export default function RelationsComponent() {
     const deletePeriod = async(id) =>{
         try {
             setSubmit(true);
-            const url = `http://localhost:8080/api-siblab/period/${id}`;
+            const url = `http://3.88.177.163:8080/api-siblab/period/${id}`;
             const response = await axios.delete(url,{
                 withCredentials: true,
             });
@@ -182,7 +182,7 @@ const Modal = ({onClose, teacher}) =>{
             console.log(data);
             try {
                 setSubmit(true);
-                const url = `http://localhost:8080/api-siblab/period/`;
+                const url = `http://3.88.177.163:8080/api-siblab/period/`;
                 const response = await axios.post(url,data,{
                     withCredentials: true,
                 });
@@ -223,7 +223,7 @@ const Modal = ({onClose, teacher}) =>{
     const fillOptions = async() =>{
         const response = await GetC();
         setOptions(response);
-        const url = `http://localhost:8080/api-siblab/semester/`;
+        const url = `http://3.88.177.163:8080/api-siblab/semester/`;
         const semester = await axios.get(url,{withCredentials:true})
         const currentSemester = semester.data.data.find(element => new Date() < new Date(element.semester_finish));
         setSemester(currentSemester);

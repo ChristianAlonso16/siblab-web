@@ -11,7 +11,7 @@ export const RegisterT = async (form) => {
             password: form.password,
             role: 'Teacher'
         };
-       const url = 'http://localhost:8080/api-siblab/user/';
+       const url = 'http://3.88.177.163:8080/api-siblab/user/';
        const response = await apiUrl.post(url,dataTeacher);
        
        return response;
@@ -30,7 +30,7 @@ export const EditT = async (form) => {
             password: form.values.password,
             role: 'Teacher'
         };
-       const url = `http://localhost:8080/api-siblab/user/${form.id}`;
+       const url = `http://3.88.177.163:8080/api-siblab/user/${form.id}`;
        const response = await apiUrl.put(url,dataTeacher);
        
        return response;
@@ -40,7 +40,7 @@ export const EditT = async (form) => {
 }
 export const GetTeacher= async() =>{
     try {
-        const url = 'http://localhost:8080/api-siblab/user/';
+        const url = 'http://3.88.177.163:8080/api-siblab/user/';
         const response = await apiUrl.get(url);
         return response.data.data;
     } catch (error) {
@@ -49,7 +49,7 @@ export const GetTeacher= async() =>{
 }
 export const GetTeacherById= async(id) =>{
     try {
-        const url = `http://localhost:8080/api-siblab/user/${id}`;
+        const url = `http://3.88.177.163:8080/api-siblab/user/${id}`;
         const response = await apiUrl.get(url);
         return response.data.data;
     } catch (error) {
@@ -58,7 +58,7 @@ export const GetTeacherById= async(id) =>{
 }
 export const ChangeStatus= async(id) =>{
     try {
-        const url = `http://localhost:8080/api-siblab/user/${id}`;
+        const url = `http://3.88.177.163:8080/api-siblab/user/${id}`;
         const response = await apiUrl.delete(url);
         return response.data.data;
     } catch (error) {

@@ -24,7 +24,7 @@ export const RegisterQ = async (form) => {
             semester_start: fechaInicioString,
             semester_finish: fechaFinString,
         };
-        const url = 'http://localhost:8080/api-siblab/semester/';
+        const url = 'http://3.88.177.163:8080/api-siblab/semester/';
         const response = await apiUrl.post(url, dataQuater);
         console.log('registrado', response);
         onSuccess("Registrado correctamente");
@@ -35,6 +35,6 @@ export const RegisterQ = async (form) => {
     }
 }
 export const GetQuater = async () =>{
-    const response= await apiUrl.get('http://localhost:8080/api-siblab/semester/');
+    const response= await apiUrl.get('http://3.88.177.163:8080/api-siblab/semester/');
     return response.data.data;
 }

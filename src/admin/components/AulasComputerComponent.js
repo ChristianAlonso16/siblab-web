@@ -7,7 +7,7 @@ import { Button } from 'react-bootstrap';
 import InfoModal from './GenerateQr';
 import { useParams } from 'react-router-dom';
 import { NoRecordsFound } from '../../teacher/components/noRecordsFound/NoRecordsFoundComponent';
-const url = 'http://localhost:8080/api-siblab/image';
+const url = 'http://3.88.177.163:8080/api-siblab/image';
 
 const AulasComputerComponent = ({ data }) => {
     const { id } = useParams();

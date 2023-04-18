@@ -4,7 +4,7 @@ import axios from "axios";
 export const getAllStudents = async () =>{
     try {
         const user = await JSON.parse(localStorage.getItem('user'));
-        const url = `http://localhost:8080/api-siblab/user/`
+        const url = `http://3.88.177.163:8080/api-siblab/user/`
         const response = await axios.get(url,{
             withCredentials: true,
         });
@@ -15,7 +15,7 @@ export const getAllStudents = async () =>{
 }
 export const getAllAttachments = async () =>{
     try {
-        const url = `http://localhost:8080/api-siblab/attachment/`
+        const url = `http://3.88.177.163:8080/api-siblab/attachment/`
         const response = await axios.get(url,{
             withCredentials: true,
         });
@@ -30,7 +30,7 @@ export const getAllAttachments = async () =>{
 export const getReport = async (id) =>{
     try {
         const user = await JSON.parse(localStorage.getItem('user'));
-        const url = `http://localhost:8080/api-siblab/report/${id}`
+        const url = `http://3.88.177.163:8080/api-siblab/report/${id}`
         const response = await axios.get(url,{
             withCredentials:true
         });
@@ -41,7 +41,7 @@ export const getReport = async (id) =>{
 }
 export const getLaboratoryById = async (id) =>{
     try {
-        const url = `http://localhost:8080/api-siblab/laboratory/${id}`
+        const url = `http://3.88.177.163:8080/api-siblab/laboratory/${id}`
         const response = await axios.get(url,{
             withCredentials: true,
         });

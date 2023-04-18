@@ -20,7 +20,7 @@ const GetGroupsComponent = () => {
     };
     const fillSemesters = async () => {
         try {
-            const response = await apiUrl.get("http://localhost:8080/api-siblab/semester/");
+            const response = await apiUrl.get("http://3.88.177.163:8080/api-siblab/semester/");
             const data = response.data.data;
             setSemesters(data);
 
@@ -37,7 +37,7 @@ const GetGroupsComponent = () => {
 
     const fillGroups = async (current = null) => {
         try {
-            const response = await apiUrl.get("http://localhost:8080/api-siblab/classroom/");
+            const response = await apiUrl.get("http://3.88.177.163:8080/api-siblab/classroom/");
             const data = response.data.data;
             
             let filter = [];

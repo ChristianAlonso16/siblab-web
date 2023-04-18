@@ -4,7 +4,7 @@ import axios from "axios";
 export const getGroupById = async (id) =>{
     try {
         const user = await JSON.parse(localStorage.getItem('user'));
-        const url = `http://localhost:8080/api-siblab/classroom/${id}`
+        const url = `http://3.88.177.163:8080/api-siblab/classroom/${id}`
         console.log(document.cookie);
         const response = await axios.get(url,{
             withCredentials: true,

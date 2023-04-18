@@ -7,7 +7,7 @@ function Session() {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const response = await axios.get('http://localhost:8080/api-siblab/session/'); // hacer la petición para obtener la sesión del usuario
+        const response = await axios.get('http://3.88.177.163:8080/api-siblab/session/'); // hacer la petición para obtener la sesión del usuario
         setUser(response.data); // actualizar el estado con los datos de sesión del usuario
       } catch (error) {
         console.error(error);

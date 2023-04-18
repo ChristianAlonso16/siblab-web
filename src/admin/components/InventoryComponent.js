@@ -11,7 +11,7 @@ import { Button } from 'react-bootstrap';
 import Swal from 'sweetalert2';
 import { onSuccess } from '../../main/utils/Alerts';
 
-const url = 'http://localhost:8080/api-siblab/image';
+const url = 'http://3.88.177.163:8080/api-siblab/image';
 const InventoryComponent = () => {
     const [machine, setMachine] = useState([]);
     const [loading, setLoading] = useState(false);

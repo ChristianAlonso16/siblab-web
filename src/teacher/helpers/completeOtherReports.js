@@ -14,7 +14,7 @@ const actualDate = () =>{
 export const completeOtherReports = async (machineId,attachment) =>{
     try {
         const user = await JSON.parse(localStorage.getItem('user'));
-        const url = `http://localhost:8080/api-siblab/report/`;
+        const url = `http://3.88.177.163:8080/api-siblab/report/`;
         const request = {
             status:'Created_teacher', defect:true,
             id_teacher:user.id, time_Register: actualDate(),

@@ -29,7 +29,7 @@ const GetTeachersComponent = () => {
     };
     const fillSemesters = async () => {
         try {
-            const response = await apiUrl.get("http://localhost:8080/api-siblab/semester/");
+            const response = await apiUrl.get("http://3.88.177.163:8080/api-siblab/semester/");
             const data = response.data.data;
             setSemesters(data);
             let current = {};
@@ -46,7 +46,7 @@ const GetTeachersComponent = () => {
 
     const fillTeachers = async (current = null) => {
         try {
-            const response = await apiUrl.get("http://localhost:8080/api-siblab/user/");
+            const response = await apiUrl.get("http://3.88.177.163:8080/api-siblab/user/");
             const data = response.data.data;
             let filter = [];
             data.forEach(user =>{

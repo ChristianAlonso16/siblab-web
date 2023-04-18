@@ -2,7 +2,7 @@ import axios from "axios";
 import apiUrl from "../../main/utils/AppUrl";
 
 export const getInventory = async () =>{
-    const url = 'http://localhost:8080/api-siblab/machine/';
+    const url = 'http://3.88.177.163:8080/api-siblab/machine/';
     const response  = await apiUrl.get("/machine/");
     console.log('respuesta de service',response);
     return response;
@@ -21,7 +21,7 @@ export const addMachine = async(form) =>{
                 id:form.aula
             }
         };
-        const url = 'http://localhost:8080/api-siblab/image';
+        const url = 'http://3.88.177.163:8080/api-siblab/image';
         const response = await apiUrl.post("/machine/",machineBean);
         if (response.status === 201) {
             const id = response.data.data.id;
@@ -56,7 +56,7 @@ export const EditMachine = async(form) =>{
                 id:form.values.aula
             }
         };
-        const url = 'http://localhost:8080/api-siblab/image';
+        const url = 'http://3.88.177.163:8080/api-siblab/image';
         const response = await apiUrl.put(`/machine/${form.id}`,machineBean);
         if (response.status === 201) {
             const id = response.data.data.id;
@@ -79,7 +79,7 @@ export const EditMachine = async(form) =>{
 }
 export const ChangeStatusMachine = async(id) =>{
     try {
-        const url = `http://localhost:8080/api-siblab/machine/${id}`;
+        const url = `http://3.88.177.163:8080/api-siblab/machine/${id}`;
         const response = await apiUrl.delete(url);
         return response.data.data;
     } catch (error) {

@@ -24,7 +24,7 @@ export const ViewReport = ({show, setShow, data}) =>{
                 <Modal.Body>
                     <div className="row">
                         <div className="col" style={{maxHeight:'350px', maxWidth:'200px'}}>
-                            <img width='100%'  src={`http://localhost:8080/api-siblab/image/${data.machine.id}`}/>
+                            <img width='100%'  src={`http://3.88.177.163:8080/api-siblab/image/${data.machine.id}`}/>
                         </div>
                         <div className="col">
                             <p className='fw-light'><strong>Dispositivo:</strong> {data.machine.name}</p>
@@ -42,7 +42,7 @@ export const ViewReport = ({show, setShow, data}) =>{
                                         minute: "2-digit",
                                         second: "2-digit",
                                     }).substring(0, 19).replace('T', ' ')}</p>
-                            <p className='fw-light'><strong>Hora de salida:</strong> {new Date(data.time_Finish).toLocaleString("es-MX", {
+                            <p className='fw-light'><strong>Hora de salida:</strong> {new Date(data.time_Finish)).toLocaleString("es-MX", {
                                         timeZone: "America/Bogota",
                                         hour12: false,
                                         year: "numeric",

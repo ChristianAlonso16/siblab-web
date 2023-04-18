@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { Button, Modal } from 'react-bootstrap';
 import QRCode from 'qrcode.react';
 import * as htmlToImage from 'html-to-image';
-const url = 'http://localhost:8080/api-siblab/image';
+const url = 'http://3.88.177.163:8080/api-siblab/image';
 
 const InfoModal = (props) => {
     const [loading, setLoading] = useState(false);

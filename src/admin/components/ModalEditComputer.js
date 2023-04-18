@@ -103,7 +103,7 @@ const ModalEditComputer = (props) => {
     }
 
     if (loading === true) return <Loading />
-    const url = `http://localhost:8080/api-siblab/image`;
+    const url = `http://3.88.177.163:8080/api-siblab/image`;
     return (
         <>
             <Button className='btn-sm ' style={{ backgroundColor: " rgb(21 47 71)" }} onClick={handleShow}>

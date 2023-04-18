@@ -22,7 +22,7 @@ export const SidebarTeacher = () =>{
     const checkSession = async() =>{
         try{
         
-            const url = `http://localhost:8080/api-siblab/session/`;
+            const url = `http://3.88.177.163:8080/api-siblab/session/`;
             const response = await axios.get(url,{withCredentials:true});
             
         }catch(err){
