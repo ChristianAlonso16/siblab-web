@@ -32,8 +32,26 @@ export const ViewReport = ({show, setShow, data}) =>{
                             <p className='fw-light'><strong>Alumno:</strong> {data.user.name} {data.user.surname}</p>
                             <p className='fw-light'><strong>Correo:</strong> {data.user.email}</p>
                             <p className='fw-light'><strong>Matrícula:</strong> {data.user.code}</p>
-                            <p className='fw-light'><strong>Registro:</strong> {new Date(data.time_Register).toLocaleString()}</p>
-                            <p className='fw-light'><strong>Hora de salida:</strong> {hour(new Date(data.time_Finish))}</p>
+                            <p className='fw-light'><strong>Registro:</strong> {new Date(data.time_Register).toLocaleString("es-MX", {
+                                        timeZone: "America/Bogota",
+                                        hour12: false,
+                                        year: "numeric",
+                                        month: "2-digit",
+                                        day: "2-digit",
+                                        hour: "2-digit",
+                                        minute: "2-digit",
+                                        second: "2-digit",
+                                    }).substring(0, 19).replace('T', ' ')}</p>
+                            <p className='fw-light'><strong>Hora de salida:</strong> {new Date(data.time_Finish).toLocaleString("es-MX", {
+                                        timeZone: "America/Bogota",
+                                        hour12: false,
+                                        year: "numeric",
+                                        month: "2-digit",
+                                        day: "2-digit",
+                                        hour: "2-digit",
+                                        minute: "2-digit",
+                                        second: "2-digit",
+                                    }).substring(0, 19).replace('T', ' ')}</p>
                         </div>
                         <div style={{overflow:'auto', height:'50px'}}>
                             <p className='fw-light'><strong>Descripcion:</strong> {data.info}</p>

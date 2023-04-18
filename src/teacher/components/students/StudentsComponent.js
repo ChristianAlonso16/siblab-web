@@ -233,7 +233,7 @@ const Reports = ({student}) => {
                     </div>
                     }
                 </div>
-                <Button onClick={handleCloseModal} style={{ backgroundColor: '#d0d0d0', color: 'black', position: 'absolute', right: '280px', bottom: '90px', width: '200px' }}>Cerrar</Button>
+                <Button onClick={handleCloseModal} style={{ backgroundColor: '#d0d0d0', color: 'black', position: 'absolute', right: '290px', bottom: '90px', width: '200px' }}>Cerrar</Button>
                 </div>
             }
             </div>
