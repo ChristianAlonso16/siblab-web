@@ -1,6 +1,6 @@
 import axios from 'axios';
 const apiUrl = axios.create({
-    baseURL:'http://52.73.120.145:8080/api-siblab',
+    baseURL:'http://localhost:8080/api-siblab',
     withCredentials:true
 });
 
