@@ -100,7 +100,7 @@ export const ViewReportComponent = ({ show, setShow, data, onReload }) => {
               <div className='col-4'>
                 <div className='viewReportA'>
                   {loading ? <div style={{ marginTop: '50%', marginLeft: '50%', position: 'relative' }}> <FontAwesomeIcon icon={faSpinner} size='2x' color='#c3c3c3' spin /> </div> : apiError ? <></> : report ?
-                    <div className='m-3' style={{ height: '100%', width: '100%', paddingBottom:'40px' }}>
+                    <div className='m-3' style={{ height: '100%', width: '100%', paddingBottom:'30px' }}>
                       <div style={{overflow:'auto', height: '100%', width: '100%'}}>
                         <p className='fw-light'><strong>Dispositivo:</strong> {report.machine.name}</p>
                         <p className='fw-light'><strong>Ubicacion:</strong> {report.laboratory.name} </p>
@@ -123,7 +123,7 @@ export const ViewReportComponent = ({ show, setShow, data, onReload }) => {
             </div>
             <Modal.Footer>
               { report && report.defect && report.status == 'Review_teacher' &&
-                <Button style={{marginTop:'-70px'}}  variant="success" onClick={() => Resolve(report, onReload)}>
+                <Button style={{marginTop:'-110px',marginRight:"-100px"}}  variant="success" onClick={() => Resolve(report, onReload)}>
                   Resolver
                 </Button>
               }

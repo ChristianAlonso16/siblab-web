@@ -119,7 +119,7 @@ export const ReportsComponent = () =>{
                         ))
                         }
                     </div>
-                    { !showModal ?  <Button className='boton' onClick={onLoadAttach}>Generar reporte</Button> :
+                    { !showModal ?  <Button style={{backgroundColor: "#339e52"}} className='boton' onClick={onLoadAttach}>Generar reporte</Button> :
                         <ViewReport data={data} setShow={setShowModal} show={showModal}/>
                     }
                 </div>

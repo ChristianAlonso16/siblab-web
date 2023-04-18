@@ -38,7 +38,7 @@ function FilterList() {
     const tabs = [
         {
             name: 'default',
-            label: 'historial',
+            label: 'Historial',
             content: (<ListReportsComponent onReload={onReload} attachments={attachments}/>)
         },
         {
@@ -136,7 +136,7 @@ const Groups = ({attachments, onReload}) =>{
 
     return loading ? <Loading message={'Cargando grupos'}/> : attach.length < 1 ? (
         <>
-            <div className='mt-2' style={{marginLeft:'350px'}}>
+            <div className='mt-2' style={{marginLeft:'400px'}}>
                 <div style={{display:'flex', width:'100%'}}>
                     {groups.map(group => (
                         <div className='p-2' style={{width:'240px'}} onClick={() => filterAttach(attachments, group.name)}>
@@ -219,9 +219,9 @@ const Teachers = ({attachments, onReload}) =>{
         filter.length < 1 && onIncomplete();
     }
 
-    return loading ? <Loading message={'Cargando grupos'}/> : attach.length < 1 ? (
+    return loading ? <Loading message={'Cargando docentes'}/> : attach.length < 1 ? (
         <>
-            <div className='mt-2' style={{marginLeft:'350px'}}>
+            <div className='mt-2' style={{marginLeft:'450px'}}>
                 <div className='row'>
                     {teachers.map((teacher, index, arr) => (
                         <div className='col-5 p-3' onClick={() => filterAttach(attachments, teacher.email)}>

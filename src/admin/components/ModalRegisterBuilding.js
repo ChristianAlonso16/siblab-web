@@ -68,7 +68,7 @@ const ModalRegisterBuilding = () => {
 
     return (
         <>
-            <button onClick={handleShow} className='form-control' style={{backgroundColor:'ButtonHighlight', maxWidth:'200px', right:'100px', position:'absolute'}}>
+            <button onClick={handleShow} className='form-control text-white' style={{backgroundColor: "rgb(21 47 71)", maxWidth:'200px', right:'100px', position:'absolute'}}>
                 Insertar docencia
             </button>
             <Modal className='fade bg-secondary ' size='lg' show={show} onHide={handleClose}>
@@ -87,7 +87,7 @@ const ModalRegisterBuilding = () => {
                     
                     <div className="col-md-6">
                         <label htmlFor="location" className="form-label">Ubicación</label>
-                        <textarea value={formik.values.location} name="location" onBlur={formik.handleBlur} onChange={formik.handleChange} type="text" className="form-control" id="location" />
+                        <textarea  rows={1} value={formik.values.location} name="location" onBlur={formik.handleBlur} onChange={formik.handleChange} type="text" className="form-control" id="location" />
                         <div className="error-message">{formik.touched.location && formik.errors.location}</div>
 
                     </div>

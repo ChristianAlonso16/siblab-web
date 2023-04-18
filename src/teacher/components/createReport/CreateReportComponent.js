@@ -38,7 +38,6 @@ export const CreateReportComponent = ({data, onShow, laboratories, buildings, re
     }
 
     useEffect(()=>{
-        console.log(data.laboratory);
         data && onChangeMachines(id_laboratory);
     },[])
     const formik = useFormik({

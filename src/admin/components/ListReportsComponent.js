@@ -47,14 +47,12 @@ export const ListReportsComponent = ({attachments = [], onAttach, isFilter = fal
                 ? prev.filter(index => index !== filaIndex)
                 : [...prev, filaIndex]
         ))
-        console.log(filasDesplegadas);
     }
 
 
     const handleShow = async (attachment) =>{
         const users = await getAllStudents();
         await setData({...attachment, users});
-        console.log(data)
         setShowModal(true);
     }
 
@@ -62,10 +60,10 @@ export const ListReportsComponent = ({attachments = [], onAttach, isFilter = fal
             <div style={{marginLeft:'300px'}}><NoRecordsFound text ={'Aún no tienes historial'}/> </div>:
             <div  className="container-sm py-3 mt-3" style={{ width: "60%", marginLeft: "400px" }}>
                 { isFilter &&
-                <div style={{padding:'5px', backgroundColor:'#0099FF', borderRadius:'5px', cursor:'pointer'}}
+                <div style={{padding:'5px',backgroundColor: "rgb(21 47 71)", borderRadius:'5px', cursor:'pointer'}}
                     onClick={()=> onAttach([])}>
                     <a href="#" style={{color:'white', textDecoration:'none'}}>
-                        <FontAwesomeIcon icon={faChevronLeft} size="20px" color="white" style={{ marginRight:'10px', marginLeft:'10px'}}/>
+                        <FontAwesomeIcon icon={faChevronLeft} size="20px" color="white" style={{ marginRight:'10px', marginLeft:'10px'                    }}/>
                         Volver
                     </a>
                 </div>

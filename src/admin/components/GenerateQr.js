@@ -36,7 +36,7 @@ const InfoModal = (props) => {
                     <Button variant="secondary" type='submit' onClick={handleClose}>
                         Cerrar
                     </Button>
-                    <Button variant="primary" type='submit' onClick={guardarQr} >
+                    <Button style={{backgroundColor: "rgb(21 47 71)"}} type='submit' onClick={guardarQr} >
                         {loading ? <FontAwesomeIcon icon={faSpinner} spin /> : "Descargar codigo"}
                     </Button>
                 </Modal.Footer>

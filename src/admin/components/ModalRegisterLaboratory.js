@@ -69,7 +69,7 @@ const ModalRegisterLaboratory = ({idBuilding}) => {
 
     return (
         <>
-            <button onClick={handleShow} className='form-control' style={{backgroundColor:'ButtonHighlight', maxWidth:'200px', right:'100px', position:'absolute'}}>
+            <button onClick={handleShow} className='form-control text-white' style={{backgroundColor: "rgb(21 47 71)", maxWidth:'200px', right:'100px', position:'absolute'}}>
                 Insertar laboratorio
             </button>
             <Modal className='fade bg-secondary ' size='lg' show={show} onHide={handleClose}>
@@ -88,7 +88,7 @@ const ModalRegisterLaboratory = ({idBuilding}) => {
                     
                     <div className="col-md-6">
                         <label htmlFor="description" className="form-label">Descripción</label>
-                        <textarea value={formik.values.description} name="description" onBlur={formik.handleBlur} onChange={formik.handleChange} type="text" className="form-control" id="description" />
+                        <textarea rows={1} value={formik.values.description} name="description" onBlur={formik.handleBlur} onChange={formik.handleChange} type="text" className="form-control" id="description" />
                         <div className="error-message">{formik.touched.description && formik.errors.description}</div>
 
                     </div>
@@ -99,7 +99,7 @@ const ModalRegisterLaboratory = ({idBuilding}) => {
                             Cerrar
                         </Button>
                         <Button disabled={!formik.isValid || formik.isSubmitting} type="submit"  className="btn " style={{ backgroundColor: " rgb(21 47 71)" }} >
-                            {loading ? "Enviando..." && <FontAwesomeIcon icon={faSpinner} spin /> : "Registrar docencia"}
+                            {loading ? "Enviando..." && <FontAwesomeIcon icon={faSpinner} spin /> : "Registrar laboratorio"}
                         </Button>
                     </Modal.Footer>  
                     </form>

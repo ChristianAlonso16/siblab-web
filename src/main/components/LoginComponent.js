@@ -44,10 +44,10 @@ const formik = useFormik({
     }
 
     return (
-        <div className="container py-5 h-100 rounded ">
+        <div className="container mt-4 h-100 rounded ">
             <div className="row d-flex justify-content-center align-items-center h-100">
                 <div className="col col-xl-10">
-                    <div className="card shadow" >
+                    <div className="card shadow-lg" >
                         <div className="row g-0">
 
                             <div className="col-md-6 col-lg-7 d-flex align-items-center">

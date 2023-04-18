@@ -9,7 +9,7 @@ const Tab = () => {
     const tabs = [
         {
             name: 'default',
-            label: 'historial',
+            label: 'Historial',
             content: (<HistoryComponent/>)
         },
         {

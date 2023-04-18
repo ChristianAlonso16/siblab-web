@@ -89,11 +89,7 @@ export default function RelationsComponent() {
         {/* Tarjeta principal */}
         <div className="main-content1" style={{maxWidth:'300px', height:'310px'}}>
             <div className="card-image1">
-                <img
-                src={banner}
-                alt="Card"
-                width='300px'
-            />
+              
             </div>
           
           <div className="card-content1" style={{margin:'16px'}}>
@@ -256,7 +252,7 @@ const Modal = ({onClose, teacher}) =>{
           }
         </ul>
         <div className="modal-buttons-container1">
-          <button className="modal-button1 modal-confirm1" disabled={submit} onClick={handleConfirmClick}>
+          <button style={{backgroundColor: "rgb(21 47 71)"}} className="modal-button1 modal-confirm1" disabled={submit} onClick={handleConfirmClick}>
             { submit ? <FontAwesomeIcon icon={faSpinner} spin/> : 'Confirmar'}
           </button>
           <button className="modal-button1 modal-cancel1" disabled={submit} onClick={handleClose}>
