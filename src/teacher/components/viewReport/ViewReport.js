@@ -42,7 +42,7 @@ export const ViewReport = ({show, setShow, data}) =>{
                                         minute: "2-digit",
                                         second: "2-digit",
                                     }).substring(0, 19).replace('T', ' ')}</p>
-                            <p className='fw-light'><strong>Hora de salida:</strong> {new Date(data.time_Finish)).toLocaleString("es-MX", {
+                            <p className='fw-light'><strong>Hora de salida:</strong> {new Date(data.time_Finish).toLocaleString("es-MX", {
                                         timeZone: "America/Bogota",
                                         hour12: false,
                                         year: "numeric",
